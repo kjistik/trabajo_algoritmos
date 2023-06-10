@@ -5,9 +5,9 @@ Trabajo práctico integrador de AYEDD-I
 
 ###INTEGRANTES###
 
-Bodo, Julian.
-Chiapello, Gianella.
+Bodo, Julián.
+Chiappello, Gianella Ariadna.
 Coronel, Martín.
 Galante, Lautaro.
 Mersuglia, Juan Pablo.
-O'Connel, Francisco.
+O'Connell, Francisco.
