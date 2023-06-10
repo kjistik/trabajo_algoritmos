@@ -3,7 +3,7 @@ Sistema de gestión de denuncias de siniestros.
 
 Trabajo práctico integrador de AYEDD-I
 
-#INTEGRANTES
+###INTEGRANTES###
 
 Bodo, Julian.
 Chiapello, Gianella.
