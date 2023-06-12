@@ -134,4 +134,8 @@ public class Logica {
 			}
 		} while (!validInput);
 	}
+
+	public static void MissMatchCatcher(String[] args) {
+		//No se como mierda implementar esto pero es tarde.
+	};
 }
