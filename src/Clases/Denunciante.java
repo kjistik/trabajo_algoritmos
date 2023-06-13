@@ -1,3 +1,4 @@
+// tuki
 public class Denunciante {
     String nombre, apellido, correo;
     Long telefono, DNI;
