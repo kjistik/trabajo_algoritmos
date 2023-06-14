@@ -5,7 +5,12 @@ public class SiniestroVehiculo {
     boolean franquicia = false;
 
     // Se declaran el resto de variables.
-    String denunciaInterna, certificadoCobertura, notaFranquicia, licenciaConducir, tarjetaVerde, fotoVehiculos;
+    String denunciaInterna;
+    String certificadoCobertura;
+    String notaFranquicia;
+    String licenciaConducir;
+    String tarjetaVerde;
+    String fotoVehiculos;
     int presupuestoReparacion;
 
     // Constructor: inicializa las propiedades de la clase.

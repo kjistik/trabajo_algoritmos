@@ -13,7 +13,10 @@ public class Mueble {
     String certificado,
     String descripcion,
     String fotos,
-    String[] factura, long dni, double presupuesto) {
+    String[] factura, 
+    long dni, 
+    double presupuesto) {
+        
         this.seguros = seguros;
         this.denuncia_interna = denuncia_interna;
         this.certificado = certificado;

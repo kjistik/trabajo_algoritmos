@@ -1,5 +1,7 @@
 public class Asegurado {
-    String marca, modelo, patente;
+    String marca;
+    String modelo;
+    String patente;
     int año;
 
     public String getMarca() {

@@ -1,6 +1,13 @@
 public class Choque {
-    Boolean seguro, franquicia, tar_verde, boleto;
-    String denuncia_int, certificado, nota_franquicia, boletoCompraVenta, foto;
+    boolean seguro;
+    boolean franquicia;
+    boolean tar_verde;
+    boolean boleto;
+    String denuncia_int;
+    String certificado;
+    String nota_franquicia;
+    String boletoCompraVenta;
+    String foto;
     long licencia;
     double presupuesto;
 
