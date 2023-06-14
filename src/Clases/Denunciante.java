@@ -1,7 +1,9 @@
-// tuki
 public class Denunciante {
-    String nombre, apellido, correo;
-    Long telefono, DNI;
+    String nombre;
+    String apellido;
+    String correo;
+    long telefono;
+    long DNI;
 
     public String getNombre() {
         return nombre;

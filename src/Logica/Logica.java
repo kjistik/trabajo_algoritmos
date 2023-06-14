@@ -126,7 +126,7 @@ public class Logica {
 			sc.close();
 		} while (!validInput);
 	}
-	
+
 	static long getLong() {
 		Scanner input = new Scanner(System.in);
 		long value;

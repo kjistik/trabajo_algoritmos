@@ -1,7 +1,10 @@
 public class Lesiones {
     Boolean covertura;
-    String denuncia_int, certificado, cert_salud;
-    Long dni, lesionado;
+    String denuncia_int;
+    String certificado;
+    String cert_salud;
+    long dni;
+    long lesionado;
 
     public Boolean getCovertura() {
         return covertura;

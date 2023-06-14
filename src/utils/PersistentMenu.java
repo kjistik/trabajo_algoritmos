@@ -19,6 +19,6 @@ public class PersistentMenu {
 				utils.AnsiColors.ANSI_YELLOW + " 0. " + utils.AnsiColors.ANSI_RESET + "Salir " + "#");
 		System.out.println(equalSeparador);
 		System.out.print("Ingresar opción: ");
-		
+
 	}
 }
