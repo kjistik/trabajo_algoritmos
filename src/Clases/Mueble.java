@@ -8,10 +8,10 @@ public class Mueble {
     double presupuesto;
     
     //Constructor: inicializa las propiedades de la clase.
-    public Mueble(boolean seguros, 
-    String denuncia_interna, 
-    String certificado, 
-    String descripcion, 
+    public Mueble(boolean seguros,
+    String denuncia_interna,
+    String certificado,
+    String descripcion,
     String fotos,
     String[] factura, long dni, double presupuesto) {
         this.seguros = seguros;
