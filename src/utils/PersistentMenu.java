@@ -3,7 +3,7 @@ package utils;
 public class PersistentMenu {
 	public static void displaySubMenu() {
 
-		String equalSeparador = "========================================================================================";
+		final String equalSeparador = "========================================================================================";
 
 		System.out.println(utils.AnsiColors.ANSI_CYAN
 				+ "Bienvenido al servicio de registro de siniestros de Pepito Corp."
