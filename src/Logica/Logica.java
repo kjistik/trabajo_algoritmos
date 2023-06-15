@@ -2,26 +2,22 @@ package Logica;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
 import utils.AnsiColors;
 
 public class Logica {
-	public static void InfoGetters() {
-		String equalSeparador =
-				"========================================================================================";
-		Scanner sc = new Scanner(System.in); // Capturamos la opción del usuario en base a el menú
-												// principal.
-		int choice = getInput();
-		switch (choice) {
-			case 1:
-				System.out.println(equalSeparador);
+	static Scanner input = new Scanner(System.in);
+
+	public static void cargaDeSiniestros(){
+		String equalSeparador ="========================================================================================";
+
+		System.out.println(equalSeparador);
 				System.out.println("Bienvenido al registro de ingreso de nuevos incidentes.");
 				System.out.println(utils.AnsiColors.ANSI_YELLOW
 						+ "Todos los datos son obligatorios al menos que se especifique lo contrario."
 						+ utils.AnsiColors.ANSI_RESET);
 				System.out.println(equalSeparador);
 
-				Scanner input = new Scanner(System.in); // Capturamos el input del user
+				 // Capturamos el input del user
 				// Empezamos por datos especificos del denunciante.
 				System.out.print(utils.AnsiColors.ANSI_CYAN + "Nombre del denunciante:"
 						+ utils.AnsiColors.ANSI_RESET);
@@ -98,51 +94,9 @@ public class Logica {
 				String inmueblesDanadosBool = input.nextLine();
 
 				System.out.println(equalSeparador);
-
-				break;
-			case 2:
-				System.out.println(utils.AnsiColors.ANSI_GREEN + "Base de datos de Siniestros"
-						+ utils.AnsiColors.ANSI_RESET);
-				// L+ogica de siniestros almacenados previamentes¿?
-				break;
-			case 3:
-				System.out.println(
-						utils.AnsiColors.ANSI_RED + "Admin Panel" + utils.AnsiColors.ANSI_RESET);
-				// Lógica de "Admin Panel"
-				break;
-			case 0:
-				System.out.println(utils.AnsiColors.ANSI_RED + "Exiting the menu"
-						+ utils.AnsiColors.ANSI_RESET);
-				System.exit(choice);
-				break;
-			default:
-				System.out.println("Opción no válida. Intenta nuevamente.");
-		}
-
-		choice = getInput();
-		sc.close();
 	}
 
-	static long getLong() {
-		Scanner input = new Scanner(System.in);
-		long value;
-		boolean valid;
-		do {
-			try {
-				value = input.nextLong();
-				valid = true;
-				return value;
-			} catch (InputMismatchException e) {
-				System.out.println(AnsiColors.ANSI_RED
-						+ "Ese input no es correcto, intente de nuevo" + AnsiColors.ANSI_RESET);
-				valid = false;
-				input.nextLine();
-			}
-		} while (!valid);
-		return -1;
-	}
-
-	static int getInput() {
+	public static int getInput() {
 		Scanner input = new Scanner(System.in);
 		int value;
 		boolean valid;
@@ -158,7 +112,29 @@ public class Logica {
 				input.nextLine();
 			}
 		} while (!valid);
+		input.close();
 		return -1;
 
+	}	
+
+	public static long getLong() {
+		Scanner input = new Scanner(System.in);
+		long value;
+		boolean valid;
+		do {
+			try {
+				value = input.nextLong();
+				valid = true;
+				return value;
+			} catch (InputMismatchException e) {
+				System.out.println(AnsiColors.ANSI_RED
+						+ "Ese input no es correcto, intente de nuevo" + AnsiColors.ANSI_RESET);
+				valid = false;
+				input.nextLine();
+			}
+		} while (!valid);
+		input.close();
+		return -1;
 	}
+
 }
