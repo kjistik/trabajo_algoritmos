@@ -7,8 +7,10 @@ import utils.AnsiColors;
 
 public class Logica {
 	public static void InfoGetters() {
-		String equalSeparador = "========================================================================================";
-		Scanner sc = new Scanner(System.in); // Capturamos la opción del usuario en base a el menú principal.
+		String equalSeparador =
+				"========================================================================================";
+		Scanner sc = new Scanner(System.in); // Capturamos la opción del usuario en base a el menú
+												// principal.
 		int choice = getInput();
 		switch (choice) {
 			case 1:
@@ -30,8 +32,8 @@ public class Logica {
 				System.out.print(utils.AnsiColors.ANSI_CYAN + "Número de documento del denunciante:"
 						+ utils.AnsiColors.ANSI_RESET);
 				long dniDenunciante = getLong();
-				System.out.print(utils.AnsiColors.ANSI_CYAN + "Teléfono de contacto del denunciante:"
-						+ utils.AnsiColors.ANSI_RESET);
+				System.out.print(utils.AnsiColors.ANSI_CYAN
+						+ "Teléfono de contacto del denunciante:" + utils.AnsiColors.ANSI_RESET);
 				long telefonoDenunciante = getLong();
 				System.out.print(utils.AnsiColors.ANSI_CYAN + "Correo electrónico del denunciante:"
 						+ utils.AnsiColors.ANSI_RESET);
@@ -40,8 +42,8 @@ public class Logica {
 				// informacion vehiculo asegurado
 				// marca, modelo, año y patente
 
-				System.out.print(utils.AnsiColors.ANSI_CYAN + "\nMarca del vehículo del denunciante:"
-						+ utils.AnsiColors.ANSI_RESET);
+				System.out.print(utils.AnsiColors.ANSI_CYAN
+						+ "\nMarca del vehículo del denunciante:" + utils.AnsiColors.ANSI_RESET);
 				String marcaVehiculo = input.nextLine();
 				System.out.print(utils.AnsiColors.ANSI_CYAN + "Modelo del vehículo:"
 						+ utils.AnsiColors.ANSI_RESET);
@@ -56,23 +58,20 @@ public class Logica {
 				// informacion del accidente
 				// fecha, hora, lugar, descripcion y daños
 
-				System.out.print(
-						utils.AnsiColors.ANSI_CYAN + "\nFecha del siniestro (DDMMAAAA):"
-								+ utils.AnsiColors.ANSI_RESET);
-				int fechaSiniestro = getInput();
-				System.out
-						.print(utils.AnsiColors.ANSI_CYAN + "Hora del siniestro (HHMM):"
-								+ utils.AnsiColors.ANSI_RESET);
-				int horaSiniestro = getInput();
-				System.out.print(utils.AnsiColors.ANSI_CYAN + "Lugar del hecho (Localidad, Dirección):"
+				System.out.print(utils.AnsiColors.ANSI_CYAN + "\nFecha del siniestro (DDMMAAAA):"
 						+ utils.AnsiColors.ANSI_RESET);
+				int fechaSiniestro = getInput();
+				System.out.print(utils.AnsiColors.ANSI_CYAN + "Hora del siniestro (HHMM):"
+						+ utils.AnsiColors.ANSI_RESET);
+				int horaSiniestro = getInput();
+				System.out.print(utils.AnsiColors.ANSI_CYAN
+						+ "Lugar del hecho (Localidad, Dirección):" + utils.AnsiColors.ANSI_RESET);
 				String lugarSiniestro = input.nextLine();
 				System.out.print(utils.AnsiColors.ANSI_CYAN + "Descripción del hecho:"
 						+ utils.AnsiColors.ANSI_RESET);
 				String descripcionSiniestro = input.nextLine();
-				System.out.print(
-						utils.AnsiColors.ANSI_CYAN + "Descripción de los daños totales:"
-								+ utils.AnsiColors.ANSI_RESET);
+				System.out.print(utils.AnsiColors.ANSI_CYAN + "Descripción de los daños totales:"
+						+ utils.AnsiColors.ANSI_RESET);
 				String danosSiniestro = input.nextLine();
 
 				// Preguntamos que tipos de daños existen y asignamos booleanos para los 3
@@ -102,14 +101,13 @@ public class Logica {
 
 				break;
 			case 2:
-				System.out.println(
-						utils.AnsiColors.ANSI_GREEN + "Base de datos de Siniestros"
-								+ utils.AnsiColors.ANSI_RESET);
+				System.out.println(utils.AnsiColors.ANSI_GREEN + "Base de datos de Siniestros"
+						+ utils.AnsiColors.ANSI_RESET);
 				// L+ogica de siniestros almacenados previamentes¿?
 				break;
 			case 3:
-				System.out.println(utils.AnsiColors.ANSI_RED + "Admin Panel"
-						+ utils.AnsiColors.ANSI_RESET);
+				System.out.println(
+						utils.AnsiColors.ANSI_RED + "Admin Panel" + utils.AnsiColors.ANSI_RESET);
 				// Lógica de "Admin Panel"
 				break;
 			case 0:
