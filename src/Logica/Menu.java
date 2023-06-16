@@ -34,8 +34,6 @@ public class Menu {
 			default:
 				System.out.println("Opción no válida. Intenta nuevamente.");
 		}
-
-		choice = logica.getInput();
 		sc.close();
 	}
 

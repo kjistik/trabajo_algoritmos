@@ -14,42 +14,35 @@ public class Core {
 
 	public void cargarInfoDenuciante() {
 		System.out.print(utils.AnsiColors.ANSI_CYAN + "Nombre del denunciante:" + utils.AnsiColors.ANSI_RESET);
-		String nombreDenunciante = input.nextLine();
-		infoDenunciante.setNombre(nombreDenunciante);
+		infoDenunciante.setNombre(input.nextLine());
 		
 		System.out.print(utils.AnsiColors.ANSI_CYAN + "Apellido del denunciante:" + utils.AnsiColors.ANSI_RESET);
-		String apellidoDenunciante = input.nextLine();
-		infoDenunciante.setApellido(apellidoDenunciante);
+		infoDenunciante.setApellido(input.nextLine());
 
 		System.out.print(utils.AnsiColors.ANSI_CYAN + "Número de documento del denunciante:" + utils.AnsiColors.ANSI_RESET);
-		long dniDenunciante = getLong();
-		infoDenunciante.setDNI(dniDenunciante);
+		infoDenunciante.setDNI(getLong());
 
 		System.out.print(utils.AnsiColors.ANSI_CYAN + "Teléfono de contacto del denunciante:" + utils.AnsiColors.ANSI_RESET);
-		long telefonoDenunciante = getLong();
-		infoDenunciante.setTelefono(telefonoDenunciante);
+	
+		infoDenunciante.setTelefono(getLong());
 
 		System.out.print(utils.AnsiColors.ANSI_CYAN + "Correo electrónico del denunciante:" + utils.AnsiColors.ANSI_RESET);
-		String emailDenunciante = input.nextLine();
-		infoDenunciante.setCorreo(emailDenunciante);
+	
+		infoDenunciante.setCorreo(input.nextLine());
 	}
 
 	public void cargarInfoVehiculo() {
 		System.out.print(utils.AnsiColors.ANSI_CYAN + "\nMarca del vehículo del denunciante:" + utils.AnsiColors.ANSI_RESET);
-		String marcaVehiculo = input.nextLine();
-		infoAsegurado.setMarca(marcaVehiculo);
+		infoAsegurado.setMarca(input.nextLine());
 
 		System.out.print(utils.AnsiColors.ANSI_CYAN + "Modelo del vehículo:" + utils.AnsiColors.ANSI_RESET);
-		String modeloVehiculo = input.nextLine();
-		infoAsegurado.setModelo(modeloVehiculo);
+		infoAsegurado.setModelo(input.nextLine());
 
 		System.out.print(utils.AnsiColors.ANSI_CYAN + "Año del vehículo:" + utils.AnsiColors.ANSI_RESET);
-		int anioVehiculo = getInput();
-		infoAsegurado.setAño(anioVehiculo);
+		infoAsegurado.setAño(getInput());
 
 		System.out.print(utils.AnsiColors.ANSI_CYAN + "Patente del vehículo:" + utils.AnsiColors.ANSI_RESET);
-		String patenteVehiculo = input.nextLine();
-		infoAsegurado.setPatente(patenteVehiculo);
+		infoAsegurado.setPatente(input.nextLine());
 
 	}
 
