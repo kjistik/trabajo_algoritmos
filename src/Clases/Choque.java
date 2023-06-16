@@ -1,3 +1,5 @@
+package Clases;
+
 public class Choque {
     boolean seguro;
     boolean franquicia;

@@ -1,3 +1,5 @@
+package Clases;
+
 public class Denunciante {
     String nombre;
     String apellido;

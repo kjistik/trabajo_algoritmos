@@ -1,3 +1,5 @@
+package Clases;
+
 public class Inmuebles {
     Boolean seguro;
     String denunciaIntern;

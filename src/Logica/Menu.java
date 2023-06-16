@@ -2,22 +2,23 @@ package Logica;
 
 import java.util.Scanner;
 
-
 public class Menu {
-	public static void InfoGetters() {
-		Logica app = new Logica();
-		Scanner sc = new Scanner(System.in); // Capturamos la opción del usuario en base a el menú
-												// principal.
-		int choice = app.getInput();
+
+	Scanner sc = new Scanner(System.in);
+	Logica logica = new Logica();
+
+	public void InfoGetters() {
+
+		int choice = logica.getInput();
 		switch (choice) {
 			case 1:
-				Logica.cargaDeSiniestros();
+				logica.cargarDatosSiniestros();
 				break;
 			case 2:
 				System.out.println(utils.AnsiColors.ANSI_GREEN + "Base de datos de Siniestros"
 						+ utils.AnsiColors.ANSI_RESET);
-				// Lógica de siniestros almacenados previamentes¿?
-				break;
+				// // L+ogica de siniestros almacenados previamentes¿?
+				// break;
 			case 3:
 				System.out.println(
 						utils.AnsiColors.ANSI_RED + "Admin Panel" + utils.AnsiColors.ANSI_RESET);
@@ -31,10 +32,7 @@ public class Menu {
 			default:
 				System.out.println("Opción no válida. Intenta nuevamente.");
 		}
-
-		choice = app.getInput();
 		sc.close();
 	}
-
 
 }

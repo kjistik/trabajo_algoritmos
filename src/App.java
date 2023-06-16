@@ -1,9 +1,10 @@
-import utils.PersistentMenu;
 import Logica.Menu;
+import utils.PersistentMenu;
 
 public class App {
     public static void main(String[] args) {
         PersistentMenu.displaySubMenu();
-        Menu.InfoGetters();
+        Menu app = new Menu();
+        app.InfoGetters();
     }
 }
