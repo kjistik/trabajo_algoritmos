@@ -2,14 +2,12 @@ package Logica;
 
 import java.util.Scanner;
 
-
 public class Menu {
 
 	Scanner sc = new Scanner(System.in);
 	Logica logica = new Logica();
 
 	public void InfoGetters() {
-
 
 		int choice = logica.getInput();
 		switch (choice) {

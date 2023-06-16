@@ -42,10 +42,4 @@ public class Logica {
 	public Long getLong(){
 		return metodo.getLong();
 	}
-	
-	
-
-	
-
-	
 }
