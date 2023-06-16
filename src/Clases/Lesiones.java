@@ -1,3 +1,5 @@
+package Clases;
+
 public class Lesiones {
     Boolean covertura;
     String denuncia_int;

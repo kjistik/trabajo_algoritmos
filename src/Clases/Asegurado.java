@@ -1,3 +1,5 @@
+package Clases;
+
 public class Asegurado {
     String marca;
     String modelo;

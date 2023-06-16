@@ -1,3 +1,5 @@
+package Clases;
+
 //Define la clase.
 public class SiniestroVehiculo {
     // Declara y se incian las variables en falso.
