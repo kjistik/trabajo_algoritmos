@@ -6,9 +6,16 @@
     "configurations": [
         {
             "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "App",
+            "projectName": "algoritmos_e279d68d"
+        },
+        {
+            "type": "java",
             "name": "Run Full Program",
             "request": "launch",
-            "mainClass": "${currentclass}",
+            "mainClass": "${currentclass}"
         },
         {
             "type": "java",

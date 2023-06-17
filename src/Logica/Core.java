@@ -1,6 +1,5 @@
 package Logica;
 
-
 import java.util.InputMismatchException;
 import utils.AnsiColors;
 import java.util.Scanner;
@@ -70,23 +69,54 @@ public class Core {
 
 
 	public void cargarTiposDeDaños() {
-		System.out.print(AnsiColors.ANSI_CYAN
+		System.out.print("\n" + AnsiColors.ANSI_CYAN
 				+ "Hay Lesiones corporales? Ingrese \"y\" si existen, \"n\" si no existen:"
 				+ AnsiColors.ANSI_RESET);
-		String lesionesBool = input.nextLine();
+		Boolean lesionesBool = getBool();
 		System.out.print(AnsiColors.ANSI_CYAN
 				+ "Hay daños a vehículos? Ingrese \"y\" si existen, \"n\" si no existen:"
 				+ AnsiColors.ANSI_RESET);
-		String vehiculosDanadosBool = input.nextLine();
+		Boolean vehiculosDanadosBool = getBool();
 		System.out.print(AnsiColors.ANSI_CYAN
 				+ "Hay daños a de muebles? Ingrese \"y\" si existen, \"n\" si no existen:"
 				+ AnsiColors.ANSI_RESET);
-		String mueblesDanadosBool = input.nextLine();
+		Boolean mueblesDanadosBool = getBool();
 		System.out.print(AnsiColors.ANSI_CYAN
 				+ "Hay daños a propiedades? Ingrese \"y\" si existen, \"n\" si no existen:"
 				+ AnsiColors.ANSI_RESET);
-		String inmueblesDanadosBool = input.nextLine();
+		Boolean inmueblesDanadosBool = getBool();
 
+	}
+
+	public Boolean getBool(){
+		String value;
+		boolean valid = false;
+		Boolean result = false;
+		do {
+			try {
+				value = input.nextLine();
+				valid = value.equals("y") || value.equals("n");
+				if(input.equals("y")){
+					valid = true;
+					return result = true;
+				}
+				if(input.equals("n")){
+					valid = true;
+					return result = false;
+				}
+				if (!valid) {
+					valid = false;
+					System.out.println(AnsiColors.ANSI_RED
+							+ "Input incorrecto, ingresa 'y' o 'n'." + AnsiColors.ANSI_RESET);
+				}
+			} catch (InputMismatchException e) {
+				System.out.println(AnsiColors.ANSI_RED
+						+ "Input incorrecto, ingresa 'y' o 'n'." + AnsiColors.ANSI_RESET);
+				valid = false;
+				input.nextLine();
+			}
+		} while (!valid);
+		return result;
 	}
 
 	public long getLong() {
