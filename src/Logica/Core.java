@@ -5,6 +5,7 @@ import java.util.Scanner;
 import Clases.Asegurado;
 import Clases.Denunciante;
 import Clases.Siniestro;
+import Clases.Lesiones;
 import utils.AnsiColors;
 
 public class Core {
