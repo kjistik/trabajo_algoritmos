@@ -2,11 +2,11 @@ package Clases;
 
 public class Lesiones {
     Boolean covertura;
-    String denuncia_int;
+    int denuncia_int;
     String certificado;
     String cert_salud;
-    long dni;
-    long lesionado;
+    int dni;
+    int lesionado;
 
     public Boolean getCovertura() {
         return covertura;
@@ -16,11 +16,11 @@ public class Lesiones {
         this.covertura = covertura;
     }
 
-    public String getDenuncia_int() {
+    public int getDenuncia_int() {
         return denuncia_int;
     }
 
-    public void setDenuncia_int(String denuncia_int) {
+    public void setDenuncia_int(int denuncia_int) {
         this.denuncia_int = denuncia_int;
     }
 
@@ -40,19 +40,19 @@ public class Lesiones {
         this.cert_salud = cert_salud;
     }
 
-    public Long getDni() {
+    public int getDni() {
         return dni;
     }
 
-    public void setDni(Long dni) {
+    public void setDni(int dni) {
         this.dni = dni;
     }
 
-    public Long getLesionado() {
+    public int getLesionado() {
         return lesionado;
     }
 
-    public void setLesionado(Long lesionado) {
+    public void setLesionado(int lesionado) {
         this.lesionado = lesionado;
     }
 }

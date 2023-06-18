@@ -28,10 +28,10 @@ public class Logica {
 
 		// Preguntamos que tipos de daños existen y asignamos booleanos para los 3
 		// tipos.
-		// Dependiendo que tipo sea verdadero, procedemos a mostrar esos menús.
 		System.out.println(equalSeparador);
-		metodo.cargarTiposDeDaños();
-		
+		metodo.setBooleanDeTiposDeDanios();
+		// Dependiendo que tipo sea verdadero, procedemos a mostrar esos menús.
+		metodo.cargarTiposDeDanios();
 		System.out.println(equalSeparador);
 	}
 

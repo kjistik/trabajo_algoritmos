@@ -10,6 +10,8 @@ public class Core {
 	Denunciante infoDenunciante = new Denunciante();
 	Asegurado infoAsegurado = new Asegurado();
 	Siniestro infoSiniestro = new Siniestro();
+	Lesiones infoLesiones = new Lesiones();
+
 
 	InputValidator validator = new InputValidator();
 
@@ -97,7 +99,7 @@ public class Core {
 	}
 
 
-	public void cargarTiposDeDaños() {
+	public void setBooleanDeTiposDeDanios() {
 		System.out.print("\n" + AnsiColors.ANSI_CYAN
 				+ "Hay Lesiones corporales? Ingrese \"y\" si existen, \"n\" si no existen:"
 				+ AnsiColors.ANSI_RESET);
@@ -114,7 +116,33 @@ public class Core {
 				+ "Hay daños a propiedades? Ingrese \"y\" si existen, \"n\" si no existen:"
 				+ AnsiColors.ANSI_RESET);
 		Boolean inmueblesDanadosBool = getBool();
+	}
 
+	public void cargarTiposDeDanios() {
+		//String setNombreError = "El o los nombres deben estan en mayúsculas: ";
+        System.out.print(utils.AnsiColors.ANSI_CYAN + "El afectado tiene cobertura? Ingrese \"y\" si tiene, \"n\" si no tiene: " + utils.AnsiColors.ANSI_RESET);
+        infoLesiones.setCovertura(getBool());
+		
+		String setDenunError = "El formato es inválido: ";
+        System.out.print(utils.AnsiColors.ANSI_CYAN + "Ingrese el número de denuncia: " + utils.AnsiColors.ANSI_RESET);
+        infoLesiones.setDenuncia_int(validator.getRegexNumeros(anoSimple, setDenunError));
+		
+		String setCertificadoError = "El formato es inválido: ";
+        System.out.print(utils.AnsiColors.ANSI_CYAN + "Ingrese el certificado de denuncia: " + utils.AnsiColors.ANSI_RESET);
+        infoLesiones.setCertificado(validator.getRegexNombres(anyComp, setCertificadoError));
+		
+		
+        System.out.print(utils.AnsiColors.ANSI_CYAN + "Ingrese el certificado de salud de la víctima: " + utils.AnsiColors.ANSI_RESET);
+        infoLesiones.setCert_salud(validator.getRegexNombres(anyComp, setCertificadoError));
+		
+		String setDniError = "El formato es inválido: ";
+        System.out.print(utils.AnsiColors.ANSI_CYAN + "Ingrese el DNI de la víctima: " + utils.AnsiColors.ANSI_RESET);
+        infoLesiones.setDni(validator.getRegexNumeros(dniComp, setDniError));
+		
+		String setLesionadoError = "El formato es inválido: ";
+        System.out.print(utils.AnsiColors.ANSI_CYAN + "No estoy seguro que es esto: " + utils.AnsiColors.ANSI_RESET);
+        infoLesiones.setLesionado(validator.getRegexNumeros(dniComp, setLesionadoError));
+		
 	}
 
 	public class InputValidator {
