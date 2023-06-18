@@ -4,8 +4,8 @@ public class Denunciante {
     String nombre;
     String apellido;
     String correo;
-    long telefono;
-    long DNI;
+    String telefono;
+    Integer DNI;
 
     public String getNombre() {
         return nombre;
@@ -31,19 +31,19 @@ public class Denunciante {
         this.correo = correo;
     }
 
-    public Long getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(Long telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
-    public Long getDNI() {
+    public Integer getDNI() {
         return DNI;
     }
 
-    public void setDNI(Long dNI) {
+    public void setDNI(Integer dNI) {
         DNI = dNI;
     }
 
