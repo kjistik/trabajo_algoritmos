@@ -4,7 +4,7 @@ public class Asegurado {
     String marca;
     String modelo;
     String patente;
-    int año;
+    Integer anio;
 
     public String getMarca() {
         return marca;
@@ -30,12 +30,12 @@ public class Asegurado {
         this.patente = patente;
     }
 
-    public int getAño() {
-        return año;
+    public Integer getAnio() {
+        return anio;
     }
 
-    public void setAño(int año) {
-        this.año = año;
+    public void setAnio(Integer anio) {
+        this.anio = anio;
     }
 
 }
