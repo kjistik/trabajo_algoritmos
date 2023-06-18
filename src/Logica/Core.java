@@ -1,9 +1,11 @@
 package Logica;
 
 import java.util.InputMismatchException;
-import utils.AnsiColors;
 import java.util.Scanner;
-import Clases.*;
+import Clases.Asegurado;
+import Clases.Denunciante;
+import Clases.Siniestro;
+import utils.AnsiColors;
 
 public class Core {
 	Scanner input = new Scanner(System.in);
@@ -14,7 +16,7 @@ public class Core {
 	InputValidator validator = new InputValidator();
 
 	String nombresCompuesto = "^([A-Z][A-Za-z ,.'`-]{3,30})$";
-	String dniComp = "^[0-9]+$";
+	String dniComp = "^[0-9]{7,8}$";
 	String telRegex = "^\\+[0-9]{1,2}-[0-9]{2,4}-[0-9]{6,8}$";
 	String eMailRegex = "^[A-Za-z0-9]+@[a-z]+\\.[a-z]+$";
 	String anyComp = "^[A-Za-z0-9]{1,10}$";
@@ -117,75 +119,7 @@ public class Core {
 
 	}
 
-	public class InputValidator {
-    public String getRegexNombres(String regex, String errorString) {
-        String value;
-        boolean valid;
-        do {
-            try {
-                value = input.nextLine();
-                if (value.matches(regex)) {
-                    valid = true;
-					return value;
-                } else {
-                    System.out.println(AnsiColors.ANSI_RED + errorString + AnsiColors.ANSI_RESET);
-                    valid = false;
-                }
-            } catch (InputMismatchException e) {
-                System.out.println(AnsiColors.ANSI_RED + "Input invalido" + AnsiColors.ANSI_RESET);
-                valid = false;
-                input.nextLine();
-            }
-        } while (!valid);
-
-        return input.nextLine();
-    }
-
-	public Integer getRegexNumeros(String regex, String errorString) {
-        String value;
-        boolean valid;
-        do {
-            try {
-                value = input.nextLine();
-                if (value.matches(regex)) {
-                    valid = true;
-					return Integer.parseInt(value);
-                } else {
-                    System.out.println(AnsiColors.ANSI_RED + errorString + AnsiColors.ANSI_RESET);
-                    valid = false;
-                }
-            } catch (InputMismatchException e) {
-                System.out.println(AnsiColors.ANSI_RED + "Input invalido" + AnsiColors.ANSI_RESET);
-                valid = false;
-                input.nextLine();
-            }
-        } while (!valid);
-
-        return null;
-    }
-
-	public String getRegexStringComp(String regex, String errorString) {
-        String value;
-        boolean valid;
-        do {
-            try {
-                value = input.nextLine();
-                if (value.matches(regex)) {
-                    valid = true;
-					return value;
-                } else {
-                    System.out.println(AnsiColors.ANSI_RED + errorString + AnsiColors.ANSI_RESET);
-                    valid = false;
-                }
-            } catch (InputMismatchException e) {
-                System.out.println(AnsiColors.ANSI_RED + "Input invalido" + AnsiColors.ANSI_RESET);
-                valid = false;
-                input.nextLine();
-            }
-        } while (!valid);
-		return null;
-	};
-}
+	
 
 	public Boolean getBool(){
 		String value;
@@ -194,11 +128,11 @@ public class Core {
 		do {
 			try {
 				value = input.nextLine();
-				if(input.equals("y")){
+				if(value.equals("y")){
 					valid = true;
 					return result = true;
 				}
-				if(input.equals("n")){
+				if(value.equals("n")){
 					valid = true;
 					return result = false;
 				}
