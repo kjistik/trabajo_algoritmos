@@ -252,12 +252,6 @@ public class Core {
 		}
 	}
 
-	public void cargarTiposDeDanios() {
-		
-	}
-
-	
-
 	public Boolean getBool(){
 		String value;
 		boolean valid = false;
