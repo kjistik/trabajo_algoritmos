@@ -2,11 +2,11 @@ package Clases;
 
 public class Inmuebles {
     Boolean seguro;
-    String denunciaIntern;
+    String denunciaInterna;
     String certificado;
     String fotos;
     String[] impuesto; // domicilio del bien dañado y nombre del propietario.
-    Long dni;
+    int dni;
     double presupuesto;
 
     public Boolean getSeguro() {
@@ -17,12 +17,12 @@ public class Inmuebles {
         this.seguro = seguro;
     }
 
-    public String getDenunciaIntern() {
-        return denunciaIntern;
+    public String getDenunciaInterna() {
+        return denunciaInterna;
     }
 
-    public void setDenunciaIntern(String denunciaIntern) {
-        this.denunciaIntern = denunciaIntern;
+    public void setDenunciaInterna(String denunciaInterna) {
+        this.denunciaInterna = denunciaInterna;
     }
 
     public String getCertificado() {
@@ -49,11 +49,11 @@ public class Inmuebles {
         this.impuesto = impuesto;
     }
 
-    public Long getDni() {
+    public int getDni() {
         return dni;
     }
 
-    public void setDni(Long dni) {
+    public void setDni(int dni) {
         this.dni = dni;
     }
 
