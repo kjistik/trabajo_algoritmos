@@ -17,6 +17,10 @@ import Persistencia.Data;
 import utils.AnsiColors;
 
 public class Core {
+
+	Denunciante currentDenunciante;
+	Asegurado currentAsegurado;
+
 	Scanner sc = new Scanner(System.in);
 	// Instanciamos cada una de las clases que vamos a utilizar y le asignamos un "info" + "Clase"
 	// como nombre
@@ -95,11 +99,15 @@ public class Core {
 		infoDenunciante.setCorreo(validator.getRegexStringComp(eMailRegex, setEmailError));
 
 		Data.add_denunciante(infoDenunciante);
+		currentDenunciante = infoDenunciante;
 	}
 
 	// Este metodo es practicamente igual al anterior
 	// pero ahora le pedimos al usuario datos del vehículo siniestrado
 	public void cargarInfoVehiculo() {
+		Data.increase_asegurados();
+		infoAsegurado.setId_denunciante(currentDenunciante.getId_denunciante());
+
 		String setMarcaError = "El nombre debe empezar en mayúsculas: ";
 		System.out.print(utils.AnsiColors.ANSI_CYAN + "\nMarca del vehículo del denunciante:"
 				+ utils.AnsiColors.ANSI_RESET);
@@ -120,6 +128,8 @@ public class Core {
 				utils.AnsiColors.ANSI_CYAN + "Patente del vehículo:" + utils.AnsiColors.ANSI_RESET);
 		infoAsegurado.setPatente(validator.getRegexNombres(patenteComp, setApellidoError));
 
+		Data.add_asegurado(infoAsegurado);
+		currentAsegurado = infoAsegurado;
 	}
 
 	// Lo mismo acá, este método hace lo mismo que los 2 anteriores

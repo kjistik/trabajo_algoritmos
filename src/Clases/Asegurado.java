@@ -11,6 +11,14 @@ public class Asegurado {
         return marca;
     }
 
+    public int getId_denunciante() {
+        return id_denunciante;
+    }
+
+    public void setId_denunciante(int id_denunciante) {
+        this.id_denunciante = id_denunciante;
+    }
+
     public void setMarca(String marca) {
         this.marca = marca;
     }
