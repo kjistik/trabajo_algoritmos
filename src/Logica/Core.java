@@ -30,7 +30,6 @@ public class Core {
 	String anyComp = "^[A-Za-z0-9]{1,10}$";
 	String anoSimple = "^[0-9]{4}$";
 	String patenteComp = "^(\\D){3}(\\d){3}$|^((\\D){2}(\\d){3}(\\D){2})$";
-
 	String fechaRegex = "^\\d{2}/\\d{2}/\\d{4}$";
 	String horaRegex = "^([01]\\d|2[0-3]):([0-5]\\d)$";
 	String locationRegex = "^[A-Za-z ,]+, [A-Za-z \\d]+ \\d{1,5}$";
@@ -164,9 +163,11 @@ public class Core {
 			System.out.print(utils.AnsiColors.ANSI_CYAN + "Ingrese la identificación de denuncia interna: " + utils.AnsiColors.ANSI_RESET);
 			infoSiniestroVehiculo.setDenunciaInterna(validator.getRegexStringComp(anyComp, setDenunIntError));
 
-			String setCertCobertError = "El formato es inválido: ";
-			System.out.print(utils.AnsiColors.ANSI_CYAN + "Ingrese el certificado de cobertura del vahículo: " + utils.AnsiColors.ANSI_RESET);
-			infoSiniestroVehiculo.setCertificadoCobertura(validator.getRegexStringComp(anyComp, setCertCobertError));
+			if(infoSiniestroVehiculo.getCobertura()){
+				String setCertCobertError = "El formato es inválido: ";
+				System.out.print(utils.AnsiColors.ANSI_CYAN + "Ingrese el certificado de cobertura del vahículo: " + utils.AnsiColors.ANSI_RESET);
+				infoSiniestroVehiculo.setCertificadoCobertura(validator.getRegexStringComp(anyComp, setCertCobertError));
+			}
 
 			String setNotaFranqError = "El formato es inválido: ";
 			System.out.print(utils.AnsiColors.ANSI_CYAN + "Ingrese la Nota de Franquicia del vahículo: " + utils.AnsiColors.ANSI_RESET);
@@ -197,9 +198,11 @@ public class Core {
 			System.out.print(utils.AnsiColors.ANSI_CYAN + "Ingrese la identificación de denuncia interna: " + utils.AnsiColors.ANSI_RESET);
 			infoMueble.setDenuncia_interna(validator.getRegexStringComp(anyComp, setDenunIntError));
 
-			String setCertCobertError = "El formato es inválido: ";
-			System.out.print(utils.AnsiColors.ANSI_CYAN + "Ingrese el certificado de cobertura del mueble: " + utils.AnsiColors.ANSI_RESET);
-			infoMueble.setCertificado(validator.getRegexStringComp(anyComp, setCertCobertError));
+			if(infoMueble.getSeguro()){
+				String setCertCobertError = "El formato es inválido: ";
+				System.out.print(utils.AnsiColors.ANSI_CYAN + "Ingrese el certificado de cobertura del mueble: " + utils.AnsiColors.ANSI_RESET);
+				infoMueble.setCertificado(validator.getRegexStringComp(anyComp, setCertCobertError));
+			}
 
 			String setDescError = "El formato es inválido: ";
 			System.out.print(utils.AnsiColors.ANSI_CYAN + "Ingrese descripción de los daños producidos al mueble: " + utils.AnsiColors.ANSI_RESET);
@@ -209,9 +212,9 @@ public class Core {
 			System.out.print(utils.AnsiColors.ANSI_CYAN + "Cargue las fotos aquí: " + utils.AnsiColors.ANSI_RESET);
 			infoMueble.setFotos(validator.getRegexStringComp(anyComp, setFotoError));
 
-			// String setFacturaError = "El formato es inválido: ";
-			// System.out.print(utils.AnsiColors.ANSI_CYAN + "Ingrese Facturas o recibos que contenga la dirección del mueble: " + utils.AnsiColors.ANSI_RESET);
-			// infoMueble.setFactura(input);
+			String setFacturaError = "El formato es inválido: ";
+			System.out.print(utils.AnsiColors.ANSI_CYAN + "Ingrese Facturas o recibos que contenga la dirección del mueble: " + utils.AnsiColors.ANSI_RESET);
+			infoMueble.setFactura(validator.getRegexStringComp(anyComp, setFacturaError));
 
 			String setDniError = "El input debe ser números válidos: ";
 			System.out.print(utils.AnsiColors.ANSI_CYAN + "Número de documento del dueño del mueble: " + utils.AnsiColors.ANSI_RESET);
@@ -230,17 +233,19 @@ public class Core {
 			System.out.print(utils.AnsiColors.ANSI_CYAN + "Ingrese la identificación de denuncia interna: " + utils.AnsiColors.ANSI_RESET);
 			infoInmuebles.setDenunciaInterna(validator.getRegexStringComp(anyComp, setDenunIntError));
 
-			String setCertCobertError = "El formato es inválido: ";
-			System.out.print(utils.AnsiColors.ANSI_CYAN + "Ingrese el certificado de cobertura del bien inmueble: " + utils.AnsiColors.ANSI_RESET);
-			infoInmuebles.setCertificado(validator.getRegexStringComp(anyComp, setCertCobertError));
+			if(infoInmuebles.getSeguro()){
+				String setCertCobertError = "El formato es inválido: ";
+				System.out.print(utils.AnsiColors.ANSI_CYAN + "Ingrese el certificado de cobertura del bien inmueble: " + utils.AnsiColors.ANSI_RESET);
+				infoInmuebles.setCertificado(validator.getRegexStringComp(anyComp, setCertCobertError));
+			}
 
 			String setFotosError = "El formato es inválido: ";
 			System.out.print(utils.AnsiColors.ANSI_CYAN + "Cargue las fotos aquí: " + utils.AnsiColors.ANSI_RESET);
 			infoInmuebles.setFotos(validator.getRegexStringComp(anyComp, setFotosError));
 
-			// String setInpuestoError = "El formato es inválido: ";
-			// System.out.print(utils.AnsiColors.ANSI_CYAN + "Ingrese Facturas o recibos que contenga la dirección del mueble: " + utils.AnsiColors.ANSI_RESET);
-			// infoInmueble.setInpuesto(input);
+			String setImpuestoError = "El formato es inválido: ";
+			System.out.print(utils.AnsiColors.ANSI_CYAN + "Ingrese Facturas o recibos que contenga la dirección del mueble: " + utils.AnsiColors.ANSI_RESET);
+			infoInmuebles.setImpuesto(validator.getRegexStringComp(anyComp, setImpuestoError));
 
 			String setDniError = "El input debe ser números válidos: ";
 			System.out.print(utils.AnsiColors.ANSI_CYAN + "Número de documento del dueño del mueble: " + utils.AnsiColors.ANSI_RESET);

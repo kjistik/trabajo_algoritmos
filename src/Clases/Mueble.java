@@ -3,9 +3,9 @@ package Clases;
 //Define la clase.
 public class Mueble {
     //Declara las variables
-    boolean seguros;
+    boolean seguro;
     String denuncia_interna, certificado, descripcion, fotos;
-    String[] factura;
+    String factura;
     long dni;
     double presupuesto;
     
@@ -29,11 +29,11 @@ public class Mueble {
     //     this.presupuesto = presupuesto;
     // }
     //Métodos para poder acceder y modificar las propiedades de la clase (get y set).
-    public boolean isSeguros() {
-        return seguros;
+    public boolean getSeguro() {
+        return seguro;
     }
-    public void setSeguros(boolean seguros) {
-        this.seguros = seguros;
+    public void setSeguros(boolean seguro) {
+        this.seguro = seguro;
     }
     public String getDenuncia_interna() {
         return denuncia_interna;
@@ -59,10 +59,10 @@ public class Mueble {
     public void setFotos(String fotos) {
         this.fotos = fotos;
     }
-    public String[] getFactura() {
+    public String getFactura() {
         return factura;
     }
-    public void setFactura(String[] factura) {
+    public void setFactura(String factura) {
         this.factura = factura;
     }
     public long getDni() {

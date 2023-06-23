@@ -5,7 +5,7 @@ public class Inmuebles {
     String denunciaInterna;
     String certificado;
     String fotos;
-    String[] impuesto; // domicilio del bien dañado y nombre del propietario.
+    String impuesto; // domicilio del bien dañado y nombre del propietario.
     int dni;
     double presupuesto;
 
@@ -41,11 +41,11 @@ public class Inmuebles {
         this.fotos = fotos;
     }
 
-    public String[] getImpuesto() {
+    public String getImpuesto() {
         return impuesto;
     }
 
-    public void setImpuesto(String[] impuesto) {
+    public void setImpuesto(String impuesto) {
         this.impuesto = impuesto;
     }
 
