@@ -12,6 +12,9 @@ public class Choque {
     String foto;
     long licencia;
     double presupuesto;
+    int id;
+    int id_denunciante;
+    int id_asegurado;
 
     public Boolean getSeguro() {
         return seguro;

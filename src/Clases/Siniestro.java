@@ -6,6 +6,9 @@ public class Siniestro {
     String lugar;
     String descripcion;
 	String danios;
+    int id;
+    int id_denunciante;
+    int id_asegurado;
 
     public String getFecha() {
         return fecha;

@@ -8,6 +8,9 @@ public class Mueble {
     String factura;
     long dni;
     double presupuesto;
+    int id;
+    int id_denunciante;
+    int id_asegurado;
     
     //Constructor: inicializa las propiedades de la clase.
     // public Mueble(boolean seguros,

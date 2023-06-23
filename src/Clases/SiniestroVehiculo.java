@@ -1,7 +1,12 @@
 package Clases;
 
-//Define la clase.
+// Define la clase.
 public class SiniestroVehiculo {
+    
+    int id;
+    int id_denunciante;
+    int id_asegurado;
+
     // Declara y se incian las variables en falso.
     boolean cobertura = false;
     boolean franquicia = false;
@@ -17,24 +22,24 @@ public class SiniestroVehiculo {
 
     // Constructor: inicializa las propiedades de la clase.
     // public SiniestroVehiculo(
-    //         boolean cobertura,
-    //         boolean franquicia,
-    //         String denunciaInterna,
-    //         String certificadoCobertura,
-    //         String notaFranquicia,
-    //         String licenciaConducir,
-    //         String tarjetaVerde,
-    //         String fotoVehiculos,
-    //         int presupuestoReparacion) {
-    //     this.cobertura = cobertura;
-    //     this.franquicia = franquicia;
-    //     this.denunciaInterna = denunciaInterna;
-    //     this.certificadoCobertura = certificadoCobertura;
-    //     this.notaFranquicia = notaFranquicia;
-    //     this.licenciaConducir = licenciaConducir;
-    //     this.tarjetaVerde = tarjetaVerde;
-    //     this.fotoVehiculos = fotoVehiculos;
-    //     this.presupuestoReparacion = presupuestoReparacion;
+    // boolean cobertura,
+    // boolean franquicia,
+    // String denunciaInterna,
+    // String certificadoCobertura,
+    // String notaFranquicia,
+    // String licenciaConducir,
+    // String tarjetaVerde,
+    // String fotoVehiculos,
+    // int presupuestoReparacion) {
+    // this.cobertura = cobertura;
+    // this.franquicia = franquicia;
+    // this.denunciaInterna = denunciaInterna;
+    // this.certificadoCobertura = certificadoCobertura;
+    // this.notaFranquicia = notaFranquicia;
+    // this.licenciaConducir = licenciaConducir;
+    // this.tarjetaVerde = tarjetaVerde;
+    // this.fotoVehiculos = fotoVehiculos;
+    // this.presupuestoReparacion = presupuestoReparacion;
     // }
 
     // Métodos para poder acceder y modificar las propiedades de la clase (get y

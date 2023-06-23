@@ -8,6 +8,9 @@ public class Inmuebles {
     String impuesto; // domicilio del bien dañado y nombre del propietario.
     int dni;
     double presupuesto;
+    int id;
+    int id_denunciante;
+    int id_asegurado;
 
     public Boolean getSeguro() {
         return seguro;

@@ -1,11 +1,15 @@
 package Clases;
 
 public class Denunciante {
+
     String nombre;
     String apellido;
     String correo;
     String telefono;
     Integer DNI;
+    int id;
+    int id_denunciante;
+    int id_asegurado;
 
     public String getNombre() {
         return nombre;
@@ -13,6 +17,14 @@ public class Denunciante {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getApellido() {

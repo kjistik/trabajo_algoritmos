@@ -1,10 +1,7 @@
 package Logica;
 
-import java.util.Scanner;
-
 public class Menu {
 
-	Scanner sc = new Scanner(System.in);
 	Logica logica = new Logica();
 
 	public void InfoGetters() {
@@ -32,7 +29,6 @@ public class Menu {
 			default:
 				System.out.println("Opción no válida. Intenta nuevamente.");
 		}
-		sc.close();
 	}
 
 }

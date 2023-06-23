@@ -5,6 +5,7 @@ public class Asegurado {
     String modelo;
     String patente;
     Integer anio;
+    int id_denunciante;
 
     public String getMarca() {
         return marca;

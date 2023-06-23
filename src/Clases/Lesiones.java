@@ -7,6 +7,9 @@ public class Lesiones {
     String cert_salud;
     int dni;
     int lesionado;
+    int id;
+    int id_denunciante;
+    int id_asegurado;
 
     public Boolean getCovertura() {
         return covertura;
