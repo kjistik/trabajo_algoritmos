@@ -16,26 +16,26 @@ public class SiniestroVehiculo {
     int presupuestoReparacion;
 
     // Constructor: inicializa las propiedades de la clase.
-    public SiniestroVehiculo(
-            boolean cobertura,
-            boolean franquicia,
-            String denunciaInterna,
-            String certificadoCobertura,
-            String notaFranquicia,
-            String licenciaConducir,
-            String tarjetaVerde,
-            String fotoVehiculos,
-            int presupuestoReparacion) {
-        this.cobertura = cobertura;
-        this.franquicia = franquicia;
-        this.denunciaInterna = denunciaInterna;
-        this.certificadoCobertura = certificadoCobertura;
-        this.notaFranquicia = notaFranquicia;
-        this.licenciaConducir = licenciaConducir;
-        this.tarjetaVerde = tarjetaVerde;
-        this.fotoVehiculos = fotoVehiculos;
-        this.presupuestoReparacion = presupuestoReparacion;
-    }
+    // public SiniestroVehiculo(
+    //         boolean cobertura,
+    //         boolean franquicia,
+    //         String denunciaInterna,
+    //         String certificadoCobertura,
+    //         String notaFranquicia,
+    //         String licenciaConducir,
+    //         String tarjetaVerde,
+    //         String fotoVehiculos,
+    //         int presupuestoReparacion) {
+    //     this.cobertura = cobertura;
+    //     this.franquicia = franquicia;
+    //     this.denunciaInterna = denunciaInterna;
+    //     this.certificadoCobertura = certificadoCobertura;
+    //     this.notaFranquicia = notaFranquicia;
+    //     this.licenciaConducir = licenciaConducir;
+    //     this.tarjetaVerde = tarjetaVerde;
+    //     this.fotoVehiculos = fotoVehiculos;
+    //     this.presupuestoReparacion = presupuestoReparacion;
+    // }
 
     // Métodos para poder acceder y modificar las propiedades de la clase (get y
     // set).

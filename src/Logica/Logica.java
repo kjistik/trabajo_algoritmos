@@ -31,6 +31,7 @@ public class Logica {
 		// Dependiendo que tipo sea verdadero, procedemos a mostrar esos menús... o menues?.
 		System.out.println(equalSeparador);
 		metodo.setBooleanDeTiposDeDanios();
+		System.out.println(equalSeparador);
 	}
 
 	public int getInput(){
