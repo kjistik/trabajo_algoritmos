@@ -1,7 +1,11 @@
+//Definimos que Core va a ser parte del paquete Logica
 package Logica;
 
+//Importamos 2 utilidades de la libreria de utilidades de Java
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+//Importamos las clases propias que vamos a usar
 import Clases.Asegurado;
 import Clases.Denunciante;
 import Clases.Inmuebles;
@@ -9,10 +13,13 @@ import Clases.Lesiones;
 import Clases.Mueble;
 import Clases.Siniestro;
 import Clases.SiniestroVehiculo;
+
+//Importamos los colores ANSI para usarlos en la consola
 import utils.AnsiColors;
 
 public class Core {
 	Scanner sc = new Scanner(System.in);
+	//Instanciamos cada una de las clases que vamos a utilizar y le asignamos un "info" + "Clase" como nombre
 	Denunciante infoDenunciante = new Denunciante();
 	Asegurado infoAsegurado = new Asegurado();
 	Siniestro infoSiniestro = new Siniestro();
@@ -21,8 +28,10 @@ public class Core {
 	Mueble infoMueble = new Mueble();
 	Inmuebles infoInmuebles = new Inmuebles();
 
+	//Instanciamos el validador de Expresiones Regulares y le asignamos el nombre validator
 	InputValidator validator = new InputValidator();
 
+	//Definimos un diccionario con los valores Regex que vamos a utilizar. Cada uno cumple una función especifica
 	String nombresCompuesto = "^([A-Z][A-Za-z ,.'`-]{3,30})$";
 	String dniComp = "^[0-9]{7,8}$";
 	String telRegex = "^\\+[0-9]{1,2}-[0-9]{2,4}-[0-9]{6,8}$";
@@ -35,6 +44,22 @@ public class Core {
 	String locationRegex = "^[A-Za-z ,]+, [A-Za-z \\d]+ \\d{1,5}$";
 	String simpleText = "^[A-Za-z ,.!?]*, [A-Za-z ,.!?]*$";
 
+	//Este es el metodo Principal que se encarga de pedir los datos que vamos a cargar en las
+	//clases que instanciamos arriba...
+	//Una breve explicación de solo el primer input que pide para entender que hace el resto del método:
+	//String setNombreError = "El o los nombres deben estan en mayúsculas: ";
+	//**Esto es solo un String que vamos a utilizar como mensaje de error **/
+	//System.out.print(utils.AnsiColors.ANSI_CYAN + "Nombre del denunciante: " + utils.AnsiColors.ANSI_RESET);
+	//** Aca simplemente imprimimos en pantalla lo que le estamos pidiendo al usuario **/
+	//** En este caso es el Nombre del denunciante **/
+	//infoDenunciante.setNombre(validator.getRegexNombres(nombresCompuesto, setNombreError));
+	//** Acá pasan varias cosas asi que separado esto en varios comentarios... **/
+	//** infoDenunciante es la INSTANCIA de Denunciante**/
+	//** .setNombre() Es un método de la clase Denunciante donde le vamos a pasar un valor**/
+	//** El valor que le vamos a pasar se lo pedimos a validator que es la INSTANCIA de InputValidator **/
+	//** .getRegexNombres() es un método del InputValidator que recibe dos parametros **/
+	//** el primer parametro es el Regex que va a utilizar el input **/
+	//** el segundo parametro es el error que va a imprimir en consola si no acepta el input**/
 	public void cargarInfoDenuciante() {
 		
 		String setNombreError = "El o los nombres deben estan en mayúsculas: ";
@@ -58,6 +83,8 @@ public class Core {
 		infoDenunciante.setCorreo(validator.getRegexStringComp(eMailRegex, setEmailError));
 	}
 
+	//Este metodo es practicamente igual al anterior
+	//pero ahora le pedimos al usuario datos del vehículo siniestrado
 	public void cargarInfoVehiculo() {
 		String setMarcaError = "El nombre debe empezar en mayúsculas: ";
 		System.out.print(utils.AnsiColors.ANSI_CYAN + "\nMarca del vehículo del denunciante:" + utils.AnsiColors.ANSI_RESET);
@@ -77,6 +104,8 @@ public class Core {
 
 	}
 
+	//Lo mismo acá, este método hace lo mismo que los 2 anteriores
+	//Pero pide los datos precisos del accidente.
 	public void cargarInfoAccidentes() {
 
 		String setFechaError = "El formato correcto debe ser DD/MM/AAAA: ";
@@ -105,7 +134,12 @@ public class Core {
 		infoSiniestro.setDanios(validator.getRegexStringComp(simpleText, setDaniosError));
 	}
 
-
+	//Acá mande todo en un mismo método
+	//*** ACLARACIÓN ***/
+	//Este metodo realiza 2 acciones a diferencia de los otros 3
+	//La primera parte le pide al usuario confirmación si existen:
+	//1. Lesiones 2. Daños a Vehículos 3. Daños a muebles 4. Daños a propiedades Inmuebles
+	//La segunda parte la comento más abajo
 	public  void setBooleanDeTiposDeDanios() {
 		System.out.print("\n" + AnsiColors.ANSI_CYAN
 				+ "Hay Lesiones corporales? Ingrese \"y\" si existen, \"n\" si no existen:"
@@ -124,8 +158,9 @@ public class Core {
 				+ AnsiColors.ANSI_RESET);
 		Boolean inmueblesDanadosBool = getBool();
 
-		//Empezamos a setear las cosillas sino no terminamo mà.
-		//Nisman did nothing wrong! ! !
+		//Acá chequeamos si el usuario afirmó que hay lesiones
+		//Si hay lesiones se ejecuta lo siguiente y pedimos los datos
+		//requeridos para cargar a la Clase Lesiones
 
 		if(lesionesBool){
 			System.out.print(utils.AnsiColors.ANSI_CYAN + "El afectado tiene cobertura? Ingrese \"y\" si tiene, \"n\" si no tiene: " + utils.AnsiColors.ANSI_RESET);
@@ -135,13 +170,17 @@ public class Core {
 			System.out.print(utils.AnsiColors.ANSI_CYAN + "Ingrese el número de denuncia: " + utils.AnsiColors.ANSI_RESET);
 			infoLesiones.setDenuncia_int(validator.getRegexNumeros(anoSimple, setDenunError));
 			
-			String setCertificadoError = "El formato es inválido: ";
-			System.out.print(utils.AnsiColors.ANSI_CYAN + "Ingrese el certificado de denuncia: " + utils.AnsiColors.ANSI_RESET);
-			infoLesiones.setCertificado(validator.getRegexNombres(anyComp, setCertificadoError));
+			//Checkeamos que Lesiones.getCovertura
+			//este seteado en true para pedir los datos de certificado 
+			if(infoLesiones.getCovertura()){
+				String setCertificadoError = "El formato es inválido: ";
+				System.out.print(utils.AnsiColors.ANSI_CYAN + "Ingrese el certificado de denuncia: " + utils.AnsiColors.ANSI_RESET);
+				infoLesiones.setCertificado(validator.getRegexNombres(anyComp, setCertificadoError));
+			}			
 			
-			
+			String setCertSaludError = "El formato es inválido: ";
 			System.out.print(utils.AnsiColors.ANSI_CYAN + "Ingrese el certificado de salud de la víctima: " + utils.AnsiColors.ANSI_RESET);
-			infoLesiones.setCert_salud(validator.getRegexNombres(anyComp, setCertificadoError));
+			infoLesiones.setCert_salud(validator.getRegexNombres(anyComp, setCertSaludError));
 			
 			String setDniError = "El formato es inválido: ";
 			System.out.print(utils.AnsiColors.ANSI_CYAN + "Ingrese el DNI de la víctima: " + utils.AnsiColors.ANSI_RESET);
@@ -152,6 +191,8 @@ public class Core {
 			infoLesiones.setLesionado(validator.getRegexNumeros(dniComp, setLesionadoError));
 		}
 
+		//Lo mismo acá. Si el usuario marcó que hay daños vehiculares
+		//habilitamos estos input para cargar la Clase SiniestroVehiculo
 		if(vehiculosDanadosBool){
 			System.out.print(utils.AnsiColors.ANSI_CYAN + "El vehículo cuenta con cobertura? Ingrese \"y\" si tiene, \"n\" si no tiene: " + utils.AnsiColors.ANSI_RESET);
 			infoSiniestroVehiculo.setCobertura(getBool());
@@ -163,6 +204,8 @@ public class Core {
 			System.out.print(utils.AnsiColors.ANSI_CYAN + "Ingrese la identificación de denuncia interna: " + utils.AnsiColors.ANSI_RESET);
 			infoSiniestroVehiculo.setDenunciaInterna(validator.getRegexStringComp(anyComp, setDenunIntError));
 
+			//Misma lógica acá, si el usuario marco que el vehiculo tiene seguro 
+			//pedimos el certificado de seguro
 			if(infoSiniestroVehiculo.getCobertura()){
 				String setCertCobertError = "El formato es inválido: ";
 				System.out.print(utils.AnsiColors.ANSI_CYAN + "Ingrese el certificado de cobertura del vahículo: " + utils.AnsiColors.ANSI_RESET);
@@ -190,6 +233,8 @@ public class Core {
 			infoSiniestroVehiculo.setPresupuestoReparacion(validator.getRegexNumeros(anoSimple, setPresupuestoError));
 		}
 
+		//Lo mismo acá, si el usuario marcó que hay daños a Muebles
+		//habilitamos la toma de datos de la Clase Mueble
 		if(mueblesDanadosBool){
 			System.out.print(utils.AnsiColors.ANSI_CYAN + "La propiedad cuenta con cobertura? Ingrese \"y\" si tiene, \"n\" si no tiene: " + utils.AnsiColors.ANSI_RESET);
 			infoMueble.setSeguros(getBool());
@@ -198,6 +243,8 @@ public class Core {
 			System.out.print(utils.AnsiColors.ANSI_CYAN + "Ingrese la identificación de denuncia interna: " + utils.AnsiColors.ANSI_RESET);
 			infoMueble.setDenuncia_interna(validator.getRegexStringComp(anyComp, setDenunIntError));
 
+			//Misma lógica, si Mueble tiene cobertura
+			//habilitamos este input para pedir el certificado 
 			if(infoMueble.getSeguro()){
 				String setCertCobertError = "El formato es inválido: ";
 				System.out.print(utils.AnsiColors.ANSI_CYAN + "Ingrese el certificado de cobertura del mueble: " + utils.AnsiColors.ANSI_RESET);
@@ -225,6 +272,9 @@ public class Core {
 			infoMueble.setPresupuesto(validator.getRegexNumeros(anoSimple, setPresupuestoError));
 		}
 
+		//Lo mismo acá, si el usuario marcó que hay daños a pripiedades
+		//inmuebles habilitamos esto para pedir por input
+		//y cargar la Clase Inmueble con los datos
 		if(inmueblesDanadosBool){
 			System.out.print(utils.AnsiColors.ANSI_CYAN + "El bien inmueble cuenta con cobertura? Ingrese \"y\" si tiene, \"n\" si no tiene: " + utils.AnsiColors.ANSI_RESET);
 			infoInmuebles.setSeguro(getBool());
@@ -233,6 +283,9 @@ public class Core {
 			System.out.print(utils.AnsiColors.ANSI_CYAN + "Ingrese la identificación de denuncia interna: " + utils.AnsiColors.ANSI_RESET);
 			infoInmuebles.setDenunciaInterna(validator.getRegexStringComp(anyComp, setDenunIntError));
 
+			//Misma lógica, si el usuario confirma que el Inmueble
+			//tiene seguro, habilitamos el input para requerir
+			//el certificado de seguro del Inmueble
 			if(infoInmuebles.getSeguro()){
 				String setCertCobertError = "El formato es inválido: ";
 				System.out.print(utils.AnsiColors.ANSI_CYAN + "Ingrese el certificado de cobertura del bien inmueble: " + utils.AnsiColors.ANSI_RESET);
@@ -257,71 +310,98 @@ public class Core {
 		}
 	}
 
+	//El siguiente método se encarga de aceptar "y" y "n" como input
+	//y asignar el valor true para "y" y false para "n"
+	//El método se encarga tanto de pedir el input como de retornar un valor Booleano
 	public Boolean getBool(){
 		String value;
 		boolean valid = false;
 		Boolean result = false;
 		do {
+				//El bloque try se ejecuta si el usuario ingresa una letra
 			try {
 				value = sc.nextLine();
+				//Checkeamos que el usuario puso "y"
 				if(value.equals("y")){
 					valid = true;
+					//Hacemos un retorno de true
 					return result = true;
 				}
+				//Checkeamos que el usuario puso "n"
 				if(value.equals("n")){
 					valid = true;
+					//Retornamos false
 					return result = false;
 				}
+				//Si el usuario puso cualquier letra menos "y" o "n" devolvemos este mensaje
 				if (!valid) {
 					valid = false;
 					System.out.println(AnsiColors.ANSI_RED
 							+ "Input incorrecto, ingresa 'y' o 'n'." + AnsiColors.ANSI_RESET);
 				}
+			//Si el usuario pone cualquier cosa menos una letra devuelta devolvemos error
 			} catch (InputMismatchException e) {
 				System.out.println(AnsiColors.ANSI_RED
 						+ "Input incorrecto, ingresa 'y' o 'n'." + AnsiColors.ANSI_RESET);
 				valid = false;
 				sc.nextLine();
 			}
+		//El while hace que el bloque DO de arriba se ejecute hasta que el usuario
+		//ponga "y" o "n"
+		//mientras mande fruta el bucle continua infinitamente
 		} while (!valid);
 		return result;
 	}
 
-	public long getLong() {
-		long value;
-		boolean valid;
-		do {
-			try {
-				value = sc.nextLong();
-				sc.nextLine();
-				valid = true;
-				return value;
-			} catch (InputMismatchException e) {
-				System.out.println(AnsiColors.ANSI_RED
-						+ "Ese input no es correcto, intente de nuevo" + AnsiColors.ANSI_RESET);
-				valid = false;
-				sc.nextLine();
-			}
-		} while (!valid);
+	//Este método se encarga de checkear que el usuario haya ingresado un Long
+	//Me di cuenta que no lo estamos utilizando en ningun lado asi que lo comento pero queda como
+	//un mito historico de la evolucion de la aplicación
+	// public long getLong() {
+	// 	long value;
+	// 	boolean valid;
+	// 	do {
+	// 		//Si el usuario ingresa un Long el try asigna a value el valor del input y retorna
+	// 		try {
+	// 			value = sc.nextLong();
+	// 			sc.nextLine();
+	// 			valid = true;
+	// 			return value;
+	//		//Si pone cualquier fruta tira error
+	// 		} catch (InputMismatchException e) {
+	// 			System.out.println(AnsiColors.ANSI_RED
+	// 					+ "Ese input no es correcto, intente de nuevo" + AnsiColors.ANSI_RESET);
+	// 			valid = false;
+	// 			sc.nextLine();
+	// 		}
+	//	//Mientras que el usuario se haga el vivo
+	//	//esto se va a ejecutar indefinidamente hasta que ponga
+	//	//un input valido
+	// 	} while (!valid);
 		
-		return -1;
-	}
+	// 	return -1;
+	// }
 
+	//Este método se encarga de tomar el input de la consola
+	//y checkea que sea un Entero
 	public int getInput() {
 		int value;
 		boolean valid;
 		do {
+			//Si es un entero retornamos el valor que puso el usuario
 			try {
 				value = sc.nextInt();
 				sc.nextLine();
 				valid = true;
 				return value;
+			//Si puso cualquier cosa manda error
 			} catch (InputMismatchException e) {
 				System.out.println(AnsiColors.ANSI_RED
 						+ "Ese input no es correcto, intente de nuevo" + AnsiColors.ANSI_RESET);
 				valid = false;
 				sc.nextLine();
 			}
+		//Pedimos el input la cantidad de veces que sea necesaria
+		//hasta que el usuario ponga una opción válida
 		} while (!valid);
 		
 		return -1;
