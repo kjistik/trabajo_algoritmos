@@ -10,24 +10,24 @@ public class Mueble {
     double presupuesto;
     
     //Constructor: inicializa las propiedades de la clase.
-    public Mueble(boolean seguros,
-    String denuncia_interna,
-    String certificado,
-    String descripcion,
-    String fotos,
-    String[] factura, 
-    long dni, 
-    double presupuesto) {
+    // public Mueble(boolean seguros,
+    // String denuncia_interna,
+    // String certificado,
+    // String descripcion,
+    // String fotos,
+    // String[] factura, 
+    // long dni, 
+    // double presupuesto) {
         
-        this.seguros = seguros;
-        this.denuncia_interna = denuncia_interna;
-        this.certificado = certificado;
-        this.descripcion = descripcion;
-        this.fotos = fotos;
-        this.factura = factura;
-        this.dni = dni;
-        this.presupuesto = presupuesto;
-    }
+    //     this.seguros = seguros;
+    //     this.denuncia_interna = denuncia_interna;
+    //     this.certificado = certificado;
+    //     this.descripcion = descripcion;
+    //     this.fotos = fotos;
+    //     this.factura = factura;
+    //     this.dni = dni;
+    //     this.presupuesto = presupuesto;
+    // }
     //Métodos para poder acceder y modificar las propiedades de la clase (get y set).
     public boolean isSeguros() {
         return seguros;

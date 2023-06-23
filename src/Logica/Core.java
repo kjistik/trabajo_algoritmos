@@ -5,20 +5,20 @@ import java.util.Scanner;
 import Clases.Asegurado;
 import Clases.Denunciante;
 import Clases.Inmuebles;
-import Clases.Siniestro;
-import Clases.SiniestroVehiculo;
 import Clases.Lesiones;
 import Clases.Mueble;
+import Clases.Siniestro;
+import Clases.SiniestroVehiculo;
 import utils.AnsiColors;
 
 public class Core {
-	Scanner input = new Scanner(System.in);
+	Scanner sc = new Scanner(System.in);
 	Denunciante infoDenunciante = new Denunciante();
 	Asegurado infoAsegurado = new Asegurado();
 	Siniestro infoSiniestro = new Siniestro();
 	Lesiones infoLesiones = new Lesiones();
-	SiniestroVehiculo infoSiniestroVehiculo = new SiniestroVehiculo(false, false, null, null, null, null, null, null, getInput());
-	Mueble infoMueble = new Mueble(false, null, null, null, null, null, getLong(), getInput());
+	SiniestroVehiculo infoSiniestroVehiculo = new SiniestroVehiculo();
+	Mueble infoMueble = new Mueble();
 	Inmuebles infoInmuebles = new Inmuebles();
 
 	InputValidator validator = new InputValidator();
@@ -33,7 +33,7 @@ public class Core {
 
 	String fechaRegex = "^\\d{2}/\\d{2}/\\d{4}$";
 	String horaRegex = "^([01]\\d|2[0-3]):([0-5]\\d)$";
-	String locationRegex = "^[A-Za-z ,]*, [A-Za-z ,]* \\d+$";
+	String locationRegex = "^[A-Za-z ,]+, [A-Za-z \\d]+ \\d{1,5}$";
 	String simpleText = "^[A-Za-z ,.!?]*, [A-Za-z ,.!?]*$";
 
 	public void cargarInfoDenuciante() {
@@ -258,7 +258,7 @@ public class Core {
 		Boolean result = false;
 		do {
 			try {
-				value = input.nextLine();
+				value = sc.nextLine();
 				if(value.equals("y")){
 					valid = true;
 					return result = true;
@@ -276,7 +276,7 @@ public class Core {
 				System.out.println(AnsiColors.ANSI_RED
 						+ "Input incorrecto, ingresa 'y' o 'n'." + AnsiColors.ANSI_RESET);
 				valid = false;
-				input.nextLine();
+				sc.nextLine();
 			}
 		} while (!valid);
 		return result;
@@ -287,15 +287,15 @@ public class Core {
 		boolean valid;
 		do {
 			try {
-				value = input.nextLong();
-				input.nextLine();
+				value = sc.nextLong();
+				sc.nextLine();
 				valid = true;
 				return value;
 			} catch (InputMismatchException e) {
 				System.out.println(AnsiColors.ANSI_RED
 						+ "Ese input no es correcto, intente de nuevo" + AnsiColors.ANSI_RESET);
 				valid = false;
-				input.nextLine();
+				sc.nextLine();
 			}
 		} while (!valid);
 		
@@ -307,15 +307,15 @@ public class Core {
 		boolean valid;
 		do {
 			try {
-				value = input.nextInt();
-				input.nextLine();
+				value = sc.nextInt();
+				sc.nextLine();
 				valid = true;
 				return value;
 			} catch (InputMismatchException e) {
 				System.out.println(AnsiColors.ANSI_RED
 						+ "Ese input no es correcto, intente de nuevo" + AnsiColors.ANSI_RESET);
 				valid = false;
-				input.nextLine();
+				sc.nextLine();
 			}
 		} while (!valid);
 		
