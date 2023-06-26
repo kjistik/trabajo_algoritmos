@@ -2,7 +2,18 @@ package Clases;
 
 // Define la clase.
 public class SiniestroVehiculo {
+    // Declara y se incian las variables en falso.
+    boolean cobertura = false;
+    boolean franquicia = false;
 
+    // Se declaran el resto de variables.
+    String denunciaInterna;
+    String certificadoCobertura;
+    String notaFranquicia;
+    String licenciaConducir;
+    String tarjetaVerde;
+    String fotoVehiculos;
+    int presupuestoReparacion;
     int id;
     int id_denunciante;
     int id_asegurado;
@@ -30,19 +41,6 @@ public class SiniestroVehiculo {
     public void setId_asegurado(int id_asegurado) {
         this.id_asegurado = id_asegurado;
     }
-
-    // Declara y se incian las variables en falso.
-    boolean cobertura = false;
-    boolean franquicia = false;
-
-    // Se declaran el resto de variables.
-    String denunciaInterna;
-    String certificadoCobertura;
-    String notaFranquicia;
-    String licenciaConducir;
-    String tarjetaVerde;
-    String fotoVehiculos;
-    int presupuestoReparacion;
 
     // Constructor: inicializa las propiedades de la clase.
     // public SiniestroVehiculo(

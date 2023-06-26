@@ -3,6 +3,7 @@ package Persistencia;
 import java.util.ArrayList;
 import Clases.Asegurado;
 import Clases.Denunciante;
+import Clases.Siniestro;
 
 public class Data {
 
@@ -42,9 +43,9 @@ public class Data {
 		denunciantes.add(denunciante);
 	}
 
-	static ArrayList<Object> incidentes = new ArrayList<Object>();
+	static ArrayList<Siniestro> incidentes = new ArrayList<Siniestro>();
 
-	public static void add_incidente(Object incidente) {
+	public static void add_incidente(Siniestro incidente) {
 		incidentes.add(incidente);
 	}
 
@@ -54,4 +55,19 @@ public class Data {
 		asegurados.add(asegurado);
 	}
 
+	public static int id_damages = -1;
+
+	static ArrayList<Object> damages = new ArrayList<Object>();
+
+	public static void increase_damages() {
+		id_damages++;
+	}
+
+	public static int getId_damages() {
+		return id_damages;
+	}
+
+	public static void add_damages(Object damage) {
+		damages.add(damage);
+	}
 }

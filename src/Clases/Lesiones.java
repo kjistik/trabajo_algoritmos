@@ -8,6 +8,8 @@ public class Lesiones {
     int dni;
     int lesionado;
     int id;
+    int id_denunciante;
+    int id_asegurado;
 
     public int getId() {
         return id;
@@ -33,8 +35,6 @@ public class Lesiones {
         this.id_asegurado = id_asegurado;
     }
 
-    int id_denunciante;
-    int id_asegurado;
 
     public Boolean getCovertura() {
         return covertura;

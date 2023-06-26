@@ -9,6 +9,8 @@ public class Inmuebles {
     int dni;
     double presupuesto;
     int id;
+    int id_denunciante;
+    int id_asegurado;
 
     public int getId() {
         return id;
@@ -33,9 +35,6 @@ public class Inmuebles {
     public void setId_asegurado(int id_asegurado) {
         this.id_asegurado = id_asegurado;
     }
-
-    int id_denunciante;
-    int id_asegurado;
 
     public Boolean getSeguro() {
         return seguro;

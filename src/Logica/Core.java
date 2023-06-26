@@ -18,6 +18,8 @@ import utils.AnsiColors;
 
 public class Core {
 
+	// variables para selección de entradas para la indexación.
+	Siniestro currentIncident;
 	Denunciante currentDenunciante;
 	Asegurado currentAsegurado;
 
@@ -100,6 +102,7 @@ public class Core {
 
 		Data.add_denunciante(infoDenunciante);
 		currentDenunciante = infoDenunciante;
+		infoDenunciante = null;
 	}
 
 	// Este metodo es practicamente igual al anterior
@@ -107,6 +110,7 @@ public class Core {
 	public void cargarInfoVehiculo() {
 		Data.increase_asegurados();
 		infoAsegurado.setId_denunciante(currentDenunciante.getId_denunciante());
+		infoAsegurado.setId_asegurado(Data.getId_asegurados());
 
 		String setMarcaError = "El nombre debe empezar en mayúsculas: ";
 		System.out.print(utils.AnsiColors.ANSI_CYAN + "\nMarca del vehículo del denunciante:"
@@ -130,11 +134,16 @@ public class Core {
 
 		Data.add_asegurado(infoAsegurado);
 		currentAsegurado = infoAsegurado;
+		infoAsegurado = null;
 	}
 
 	// Lo mismo acá, este método hace lo mismo que los 2 anteriores
 	// Pero pide los datos precisos del accidente.
 	public void cargarInfoAccidentes() {
+		Data.increase_incidentes();
+		infoSiniestro.setId_asegurado(currentAsegurado.getId_asegurado());
+		infoSiniestro.setId(Data.getId_incidentes());
+		infoSiniestro.setId_denunciante(currentDenunciante.getId_denunciante());
 
 		String setFechaError = "El formato correcto debe ser DD/MM/AAAA: ";
 		System.out.print(utils.AnsiColors.ANSI_CYAN + "\nFecha del siniestro (DD/MM/AAAA):"

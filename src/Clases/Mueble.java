@@ -4,6 +4,13 @@ package Clases;
 public class Mueble {
     // Declara las variables
     boolean seguro;
+    String denuncia_interna, certificado, descripcion, fotos;
+    String factura;
+    long dni;
+    double presupuesto;
+    int id;
+    int id_denunciante;
+    int id_asegurado;
 
     public void setSeguro(boolean seguro) {
         this.seguro = seguro;
@@ -32,14 +39,6 @@ public class Mueble {
     public void setId_asegurado(int id_asegurado) {
         this.id_asegurado = id_asegurado;
     }
-
-    String denuncia_interna, certificado, descripcion, fotos;
-    String factura;
-    long dni;
-    double presupuesto;
-    int id;
-    int id_denunciante;
-    int id_asegurado;
 
     // Constructor: inicializa las propiedades de la clase.
     // public Mueble(boolean seguros,
