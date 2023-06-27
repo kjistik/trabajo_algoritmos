@@ -19,12 +19,7 @@ public class Menu {
 				case 2:
 					System.out.println(utils.AnsiColors.ANSI_GREEN + "Base de datos de Siniestros"
 							+ utils.AnsiColors.ANSI_RESET);
-					// // L+ogica de siniestros almacenados previamentes¿?
-					break;
-				case 3:
-					System.out.println(utils.AnsiColors.ANSI_RED + "Admin Panel"
-							+ utils.AnsiColors.ANSI_RESET);
-					// Lógica de "Admin Panel"
+					// Lógica de siniestros almacenados previamentes¿?
 					break;
 				case 0:
 					System.out.println(utils.AnsiColors.ANSI_RED + "Exiting the menu"
