@@ -39,6 +39,14 @@ public class Data {
 
 	static ArrayList<Denunciante> denunciantes = new ArrayList<Denunciante>();
 
+	public static Denunciante getDenunciante(int index) {
+		try {
+			return denunciantes.get(index);
+		} catch (IndexOutOfBoundsException e) {
+			return null;
+		}
+	}
+
 	public static void add_denunciante(Denunciante denunciante) {
 		denunciantes.add(denunciante);
 	}

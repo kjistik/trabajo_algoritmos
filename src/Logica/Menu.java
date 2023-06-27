@@ -20,6 +20,7 @@ public class Menu {
 					System.out.println(utils.AnsiColors.ANSI_GREEN + "Base de datos de Siniestros"
 							+ utils.AnsiColors.ANSI_RESET);
 					// Lógica de siniestros almacenados previamentes¿?
+					logica.getInfo();
 					break;
 				case 0:
 					System.out.println(utils.AnsiColors.ANSI_RED + "Exiting the menu"
