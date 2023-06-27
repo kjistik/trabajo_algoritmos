@@ -45,7 +45,7 @@ public class Data {
 
 	static ArrayList<Siniestro> incidentes = new ArrayList<Siniestro>();
 
-	public static void add_incidente(Siniestro incidente) {
+	public static void add_siniestro(Siniestro incidente) {
 		incidentes.add(incidente);
 	}
 

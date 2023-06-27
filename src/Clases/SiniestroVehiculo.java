@@ -17,6 +17,7 @@ public class SiniestroVehiculo {
     int id;
     int id_denunciante;
     int id_asegurado;
+    int id_siniestro;
 
     public int getId() {
         return id;
@@ -136,5 +137,13 @@ public class SiniestroVehiculo {
 
     public void setPresupuestoReparacion(int presupuestoReparacion) {
         this.presupuestoReparacion = presupuestoReparacion;
+    }
+
+    public int getId_siniestro() {
+        return id_siniestro;
+    }
+
+    public void setId_siniestro(int id_sinistro) {
+        this.id_siniestro = id_sinistro;
     }
 }

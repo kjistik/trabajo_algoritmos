@@ -22,6 +22,7 @@ public class Core {
 	Siniestro currentIncident;
 	Denunciante currentDenunciante;
 	Asegurado currentAsegurado;
+	Object currentDamage;
 
 	Scanner sc = new Scanner(System.in);
 	// Instanciamos cada una de las clases que vamos a utilizar y le asignamos un "info" + "Clase"
@@ -50,6 +51,7 @@ public class Core {
 	String horaRegex = "^([01]\\d|2[0-3]):([0-5]\\d)$";
 	String locationRegex = "^[A-Za-z ,]+, [A-Za-z \\d]+ \\d{1,5}$";
 	String simpleText = "^[A-Za-z ,.!?]*, [A-Za-z ,.!?]*$";
+	String descText = "^(?=.*[A-Za-z]{20})[A-Za-z\\s.,!?@#$%^&*()-=_+~<>;:'\"\\\\/|]{1,}$";
 
 	// Este es el metodo Principal que se encarga de pedir los datos que vamos a cargar en las
 	// clases que instanciamos arriba...
@@ -164,12 +166,15 @@ public class Core {
 				"La cadena solo puede contener Letras, comas, puntos y números: ";
 		System.out.print(utils.AnsiColors.ANSI_CYAN + "Descripción del hecho:"
 				+ utils.AnsiColors.ANSI_RESET);
-		infoSiniestro.setDescripcion(validator.getRegexStringComp(simpleText, setDescripcionError));
+		infoSiniestro.setDescripcion(sc.nextLine());
 
 		String setDaniosError = "La cadena solo puede contener Letras, comas, puntos y números: ";
 		System.out.print(utils.AnsiColors.ANSI_CYAN + "Descripción de los daños totales:"
 				+ utils.AnsiColors.ANSI_RESET);
-		infoSiniestro.setDanios(validator.getRegexStringComp(simpleText, setDaniosError));
+		infoSiniestro.setDanios(validator.getRegexStringComp(descText, setDaniosError));
+		Data.add_siniestro(infoSiniestro);
+		currentIncident = infoSiniestro;
+		infoSiniestro = null;
 	}
 
 	// Acá mande todo en un mismo método
@@ -201,6 +206,12 @@ public class Core {
 		// requeridos para cargar a la Clase Lesiones
 
 		if (lesionesBool) {
+			Data.increase_damages();
+			infoLesiones.setId(Data.getId_damages());
+			infoLesiones.setId_denunciante(currentDenunciante.getId_denunciante());
+			infoLesiones.setId_siniestro(currentIncident.getId());
+			infoLesiones.setId_asegurado(currentAsegurado.getId_asegurado());
+
 			System.out.print(utils.AnsiColors.ANSI_CYAN
 					+ "El afectado tiene cobertura? Ingrese \"y\" si tiene, \"n\" si no tiene: "
 					+ utils.AnsiColors.ANSI_RESET);
@@ -232,15 +243,27 @@ public class Core {
 					+ utils.AnsiColors.ANSI_RESET);
 			infoLesiones.setDni(validator.getRegexNumeros(dniComp, setDniError));
 
-			String setLesionadoError = "El formato es inválido: ";
-			System.out.print(utils.AnsiColors.ANSI_CYAN + "No estoy seguro que es esto: "
-					+ utils.AnsiColors.ANSI_RESET);
-			infoLesiones.setLesionado(validator.getRegexNumeros(dniComp, setLesionadoError));
+			/*
+			 * String setLesionadoError = "El formato es inválido: ";
+			 * System.out.print(utils.AnsiColors.ANSI_CYAN + "No estoy seguro que es esto: " +
+			 * utils.AnsiColors.ANSI_RESET);
+			 * infoLesiones.setLesionado(validator.getRegexNumeros(dniComp, setLesionadoError));
+			 */
+			Data.add_damages(infoLesiones);
+			currentDamage = infoLesiones;
+			infoLesiones = null;
 		}
 
 		// Lo mismo acá. Si el usuario marcó que hay daños vehiculares
 		// habilitamos estos input para cargar la Clase SiniestroVehiculo
 		if (vehiculosDanadosBool) {
+
+			Data.increase_damages();
+			infoSiniestroVehiculo.setId(Data.getId_damages());
+			infoSiniestroVehiculo.setId_denunciante(currentDenunciante.getId_denunciante());
+			infoSiniestroVehiculo.setId_siniestro(currentIncident.getId());
+			infoSiniestroVehiculo.setId_asegurado(currentAsegurado.getId_asegurado());
+
 			System.out.print(utils.AnsiColors.ANSI_CYAN
 					+ "El vehículo cuenta con cobertura? Ingrese \"y\" si tiene, \"n\" si no tiene: "
 					+ utils.AnsiColors.ANSI_RESET);
@@ -300,11 +323,22 @@ public class Core {
 					+ utils.AnsiColors.ANSI_RESET);
 			infoSiniestroVehiculo.setPresupuestoReparacion(
 					validator.getRegexNumeros(anoSimple, setPresupuestoError));
+
+			Data.add_damages(infoSiniestroVehiculo);
+			currentDamage = infoSiniestroVehiculo;
+			infoSiniestroVehiculo = null;
 		}
 
 		// Lo mismo acá, si el usuario marcó que hay daños a Muebles
 		// habilitamos la toma de datos de la Clase Mueble
 		if (mueblesDanadosBool) {
+
+			Data.increase_damages();
+			infoMueble.setId(Data.getId_damages());
+			infoMueble.setId_denunciante(currentDenunciante.getId_denunciante());
+			infoMueble.setId_siniestro(currentIncident.getId());
+			infoMueble.setId_asegurado(currentAsegurado.getId_asegurado());
+
 			System.out.print(utils.AnsiColors.ANSI_CYAN
 					+ "La propiedad cuenta con cobertura? Ingrese \"y\" si tiene, \"n\" si no tiene: "
 					+ utils.AnsiColors.ANSI_RESET);
@@ -354,12 +388,23 @@ public class Core {
 					utils.AnsiColors.ANSI_CYAN + "Ingrese el presupuesto obtenido para el mueble: "
 							+ utils.AnsiColors.ANSI_RESET);
 			infoMueble.setPresupuesto(validator.getRegexNumeros(anoSimple, setPresupuestoError));
+
+			Data.add_damages(infoMueble);
+			currentDamage = infoMueble;
+			infoMueble = null;
 		}
 
 		// Lo mismo acá, si el usuario marcó que hay daños a pripiedades
 		// inmuebles habilitamos esto para pedir por input
 		// y cargar la Clase Inmueble con los datos
 		if (inmueblesDanadosBool) {
+
+			Data.increase_damages();
+			infoInmuebles.setId(Data.getId_damages());
+			infoInmuebles.setId_denunciante(currentDenunciante.getId_denunciante());
+			infoInmuebles.setId_siniestro(currentIncident.getId());
+			infoInmuebles.setId_asegurado(currentAsegurado.getId_asegurado());
+
 			System.out.print(utils.AnsiColors.ANSI_CYAN
 					+ "El bien inmueble cuenta con cobertura? Ingrese \"y\" si tiene, \"n\" si no tiene: "
 					+ utils.AnsiColors.ANSI_RESET);
@@ -405,6 +450,9 @@ public class Core {
 					+ "Ingrese el presupuesto obtenido para el inmueble: "
 					+ utils.AnsiColors.ANSI_RESET);
 			infoInmuebles.setPresupuesto(validator.getRegexNumeros(anoSimple, setPresupuestoError));
+			Data.add_damages(infoInmuebles);
+			currentDamage = infoInmuebles;
+			infoInmuebles = null;
 		}
 	}
 

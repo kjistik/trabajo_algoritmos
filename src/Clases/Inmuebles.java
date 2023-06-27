@@ -11,6 +11,15 @@ public class Inmuebles {
     int id;
     int id_denunciante;
     int id_asegurado;
+    int id_siniestro;
+
+    public int getId_siniestro() {
+        return id_siniestro;
+    }
+
+    public void setId_siniestro(int id_siniestro) {
+        this.id_siniestro = id_siniestro;
+    }
 
     public int getId() {
         return id;
