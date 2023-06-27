@@ -23,9 +23,11 @@ public class Core {
 	Denunciante currentDenunciante;
 	Asegurado currentAsegurado;
 	Object currentDamage;
+	Object display;
 
 	Scanner sc = new Scanner(System.in);
-	// Instanciamos cada una de las clases que vamos a utilizar y le asignamos un "info" + "Clase"
+	// Instanciamos cada una de las clases que vamos a utilizar y le asignamos un
+	// "info" + "Clase"
 	// como nombre
 	Denunciante infoDenunciante = new Denunciante();
 	Asegurado infoAsegurado = new Asegurado();
@@ -35,10 +37,12 @@ public class Core {
 	Mueble infoMueble = new Mueble();
 	Inmuebles infoInmuebles = new Inmuebles();
 
-	// Instanciamos el validador de Expresiones Regulares y le asignamos el nombre validator
+	// Instanciamos el validador de Expresiones Regulares y le asignamos el nombre
+	// validator
 	InputValidator validator = new InputValidator();
 
-	// Definimos un diccionario con los valores Regex que vamos a utilizar. Cada uno cumple una
+	// Definimos un diccionario con los valores Regex que vamos a utilizar. Cada uno
+	// cumple una
 	// función especifica
 	String nombresCompuesto = "^([A-Z][A-Za-z ,.'`-]{3,30})$";
 	String dniComp = "^[0-9]{7,8}$";
@@ -53,25 +57,33 @@ public class Core {
 	String simpleText = "^[A-Za-z ,.!?]*, [A-Za-z ,.!?]*$";
 	String descText = "^(?=.*[A-Za-z]{20})[A-Za-z\\s.,!?@#$%^&*()-=_+~<>;:'\"\\\\/|]{1,}$";
 
-	// Este es el metodo Principal que se encarga de pedir los datos que vamos a cargar en las
+	// Este es el metodo Principal que se encarga de pedir los datos que vamos a
+	// cargar en las
 	// clases que instanciamos arriba...
-	// Una breve explicación de solo el primer input que pide para entender que hace el resto del
+	// Una breve explicación de solo el primer input que pide para entender que hace
+	// el resto del
 	// método:
 	// String setNombreError = "El o los nombres deben estan en mayúsculas: ";
 	// **Esto es solo un String que vamos a utilizar como mensaje de error **/
 	// System.out.print(utils.AnsiColors.ANSI_CYAN + "Nombre del denunciante: " +
 	// utils.AnsiColors.ANSI_RESET);
-	// ** Aca simplemente imprimimos en pantalla lo que le estamos pidiendo al usuario **/
+	// ** Aca simplemente imprimimos en pantalla lo que le estamos pidiendo al
+	// usuario **/
 	// ** En este caso es el Nombre del denunciante **/
-	// infoDenunciante.setNombre(validator.getRegexNombres(nombresCompuesto, setNombreError));
+	// infoDenunciante.setNombre(validator.getRegexNombres(nombresCompuesto,
+	// setNombreError));
 	// ** Acá pasan varias cosas asi que separado esto en varios comentarios... **/
 	// ** infoDenunciante es la INSTANCIA de Denunciante**/
-	// ** .setNombre() Es un método de la clase Denunciante donde le vamos a pasar un valor**/
-	// ** El valor que le vamos a pasar se lo pedimos a validator que es la INSTANCIA de
+	// ** .setNombre() Es un método de la clase Denunciante donde le vamos a pasar
+	// un valor**/
+	// ** El valor que le vamos a pasar se lo pedimos a validator que es la
+	// INSTANCIA de
 	// InputValidator **/
-	// ** .getRegexNombres() es un método del InputValidator que recibe dos parametros **/
+	// ** .getRegexNombres() es un método del InputValidator que recibe dos
+	// parametros **/
 	// ** el primer parametro es el Regex que va a utilizar el input **/
-	// ** el segundo parametro es el error que va a imprimir en consola si no acepta el input**/
+	// ** el segundo parametro es el error que va a imprimir en consola si no acepta
+	// el input**/
 	public void cargarInfoDenuciante() {
 		Data.increase();
 		infoDenunciante.setId(Data.getId_denunciantes());
@@ -143,9 +155,9 @@ public class Core {
 	// Pero pide los datos precisos del accidente.
 	public void cargarInfoAccidentes() {
 		Data.increase_incidentes();
-		infoSiniestro.setId_asegurado(currentAsegurado.getId_asegurado());
+		infoSiniestro.setId_asegurado(getInput());
 		infoSiniestro.setId(Data.getId_incidentes());
-		infoSiniestro.setId_denunciante(currentDenunciante.getId_denunciante());
+		infoSiniestro.setId_denunciante(getInput());
 
 		String setFechaError = "El formato correcto debe ser DD/MM/AAAA: ";
 		System.out.print(utils.AnsiColors.ANSI_CYAN + "\nFecha del siniestro (DD/MM/AAAA):"
@@ -162,8 +174,7 @@ public class Core {
 				+ utils.AnsiColors.ANSI_RESET);
 		infoSiniestro.setLugar(validator.getRegexStringComp(locationRegex, setLugarError));
 
-		String setDescripcionError =
-				"La cadena solo puede contener Letras, comas, puntos y números: ";
+		String setDescripcionError = "La cadena solo puede contener Letras, comas, puntos y números: ";
 		System.out.print(utils.AnsiColors.ANSI_CYAN + "Descripción del hecho:"
 				+ utils.AnsiColors.ANSI_RESET);
 		infoSiniestro.setDescripcion(sc.nextLine());
@@ -181,7 +192,8 @@ public class Core {
 	// *** ACLARACIÓN ***/
 	// Este metodo realiza 2 acciones a diferencia de los otros 3
 	// La primera parte le pide al usuario confirmación si existen:
-	// 1. Lesiones 2. Daños a Vehículos 3. Daños a muebles 4. Daños a propiedades Inmuebles
+	// 1. Lesiones 2. Daños a Vehículos 3. Daños a muebles 4. Daños a propiedades
+	// Inmuebles
 	// La segunda parte la comento más abajo
 	public void setBooleanDeTiposDeDanios() {
 		System.out.print("\n" + AnsiColors.ANSI_CYAN
@@ -208,9 +220,7 @@ public class Core {
 		if (lesionesBool) {
 			Data.increase_damages();
 			infoLesiones.setId(Data.getId_damages());
-			infoLesiones.setId_denunciante(currentDenunciante.getId_denunciante());
 			infoLesiones.setId_siniestro(currentIncident.getId());
-			infoLesiones.setId_asegurado(currentAsegurado.getId_asegurado());
 
 			System.out.print(utils.AnsiColors.ANSI_CYAN
 					+ "El afectado tiene cobertura? Ingrese \"y\" si tiene, \"n\" si no tiene: "
@@ -245,9 +255,11 @@ public class Core {
 
 			/*
 			 * String setLesionadoError = "El formato es inválido: ";
-			 * System.out.print(utils.AnsiColors.ANSI_CYAN + "No estoy seguro que es esto: " +
+			 * System.out.print(utils.AnsiColors.ANSI_CYAN + "No estoy seguro que es esto: "
+			 * +
 			 * utils.AnsiColors.ANSI_RESET);
-			 * infoLesiones.setLesionado(validator.getRegexNumeros(dniComp, setLesionadoError));
+			 * infoLesiones.setLesionado(validator.getRegexNumeros(dniComp,
+			 * setLesionadoError));
 			 */
 			Data.add_damages(infoLesiones);
 			currentDamage = infoLesiones;
@@ -260,9 +272,7 @@ public class Core {
 
 			Data.increase_damages();
 			infoSiniestroVehiculo.setId(Data.getId_damages());
-			infoSiniestroVehiculo.setId_denunciante(currentDenunciante.getId_denunciante());
 			infoSiniestroVehiculo.setId_siniestro(currentIncident.getId());
-			infoSiniestroVehiculo.setId_asegurado(currentAsegurado.getId_asegurado());
 
 			System.out.print(utils.AnsiColors.ANSI_CYAN
 					+ "El vehículo cuenta con cobertura? Ingrese \"y\" si tiene, \"n\" si no tiene: "
@@ -335,9 +345,7 @@ public class Core {
 
 			Data.increase_damages();
 			infoMueble.setId(Data.getId_damages());
-			infoMueble.setId_denunciante(currentDenunciante.getId_denunciante());
 			infoMueble.setId_siniestro(currentIncident.getId());
-			infoMueble.setId_asegurado(currentAsegurado.getId_asegurado());
 
 			System.out.print(utils.AnsiColors.ANSI_CYAN
 					+ "La propiedad cuenta con cobertura? Ingrese \"y\" si tiene, \"n\" si no tiene: "
@@ -401,9 +409,7 @@ public class Core {
 
 			Data.increase_damages();
 			infoInmuebles.setId(Data.getId_damages());
-			infoInmuebles.setId_denunciante(currentDenunciante.getId_denunciante());
 			infoInmuebles.setId_siniestro(currentIncident.getId());
-			infoInmuebles.setId_asegurado(currentAsegurado.getId_asegurado());
 
 			System.out.print(utils.AnsiColors.ANSI_CYAN
 					+ "El bien inmueble cuenta con cobertura? Ingrese \"y\" si tiene, \"n\" si no tiene: "
@@ -458,7 +464,8 @@ public class Core {
 
 	// El siguiente método se encarga de aceptar "y" y "n" como input
 	// y asignar el valor true para "y" y false para "n"
-	// El método se encarga tanto de pedir el input como de retornar un valor Booleano
+	// El método se encarga tanto de pedir el input como de retornar un valor
+	// Booleano
 	public Boolean getBool() {
 		String value;
 		boolean valid = false;
@@ -500,13 +507,15 @@ public class Core {
 	}
 
 	// Este método se encarga de checkear que el usuario haya ingresado un Long
-	// Me di cuenta que no lo estamos utilizando en ningun lado asi que lo comento pero queda como
+	// Me di cuenta que no lo estamos utilizando en ningun lado asi que lo comento
+	// pero queda como
 	// un mito historico de la evolucion de la aplicación
 	// public long getLong() {
 	// long value;
 	// boolean valid;
 	// do {
-	// //Si el usuario ingresa un Long el try asigna a value el valor del input y retorna
+	// //Si el usuario ingresa un Long el try asigna a value el valor del input y
+	// retorna
 	// try {
 	// value = sc.nextLong();
 	// sc.nextLine();
@@ -552,5 +561,41 @@ public class Core {
 
 		return -1;
 
+	}
+
+	public void getInfo() {
+		System.out.println("¿Qué información necesita?");
+		System.out.println(AnsiColors.ANSI_YELLOW + "1" + AnsiColors.ANSI_RESET + " Denunciantes");
+		System.out.println(AnsiColors.ANSI_YELLOW + "2" + AnsiColors.ANSI_RESET + " Vehículos asegurados");
+		System.out.println(AnsiColors.ANSI_YELLOW + "3" + AnsiColors.ANSI_RESET + " Incidentes");
+		System.out.println(AnsiColors.ANSI_YELLOW + "4" + AnsiColors.ANSI_RESET + " Daños registrados");
+		switch (getInput()) {
+			case 1:
+				System.out.println("Ingrese el número de identificación");
+				display = Data.getDenunciante(getInput());
+				break;
+			case 2:
+				System.out.println("Ingrese el número de identificación");
+				break;
+			case 3:
+				System.out.println("Ingrese el número de identificación");
+				break;
+			case 4:
+				System.out.println("Ingrese el número de identificación");
+				break;
+			case 5:
+				System.out.println("Ingrese el número de identificación");
+				break;
+			default:
+				System.out.println("Esta no es una opción válida");
+				break;
+		}
+	}
+
+	public void cleanCurrent() {
+		currentAsegurado = null;
+		currentDamage = null;
+		currentDenunciante = null;
+		currentIncident = null;
 	}
 }

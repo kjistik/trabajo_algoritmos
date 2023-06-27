@@ -15,8 +15,6 @@ public class SiniestroVehiculo {
     String fotoVehiculos;
     int presupuestoReparacion;
     int id;
-    int id_denunciante;
-    int id_asegurado;
     int id_siniestro;
 
     public int getId() {
@@ -25,22 +23,6 @@ public class SiniestroVehiculo {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getId_denunciante() {
-        return id_denunciante;
-    }
-
-    public void setId_denunciante(int id_denunciante) {
-        this.id_denunciante = id_denunciante;
-    }
-
-    public int getId_asegurado() {
-        return id_asegurado;
-    }
-
-    public void setId_asegurado(int id_asegurado) {
-        this.id_asegurado = id_asegurado;
     }
 
     // Constructor: inicializa las propiedades de la clase.

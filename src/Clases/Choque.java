@@ -13,9 +13,7 @@ public class Choque {
     long licencia;
     double presupuesto;
     int id;
-    int id_denunciante;
     int id_asegurado;
-
 
     public int getId() {
         return id;
@@ -23,14 +21,6 @@ public class Choque {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getId_denunciante() {
-        return id_denunciante;
-    }
-
-    public void setId_denunciante(int id_denunciante) {
-        this.id_denunciante = id_denunciante;
     }
 
     public int getId_asegurado() {

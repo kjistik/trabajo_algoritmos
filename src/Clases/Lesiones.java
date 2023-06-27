@@ -8,8 +8,6 @@ public class Lesiones {
     int dni;
     int lesionado;
     int id;
-    int id_denunciante;
-    int id_asegurado;
     int id_siniestro;
 
     
@@ -20,23 +18,6 @@ public class Lesiones {
     public void setId(int id) {
         this.id = id;
     }
-
-    public int getId_denunciante() {
-        return id_denunciante;
-    }
-
-    public void setId_denunciante(int id_denunciante) {
-        this.id_denunciante = id_denunciante;
-    }
-
-    public int getId_asegurado() {
-        return id_asegurado;
-    }
-
-    public void setId_asegurado(int id_asegurado) {
-        this.id_asegurado = id_asegurado;
-    }
-
 
     public Boolean getCovertura() {
         return covertura;
