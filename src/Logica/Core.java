@@ -157,8 +157,7 @@ public class Core {
 		Data.increase_incidentes();
 		infoSiniestro.setId_asegurado(getInput());
 		infoSiniestro.setId(Data.getId_incidentes());
-		infoSiniestro.setId_denunciante(getInput());
-
+	
 		String setFechaError = "El formato correcto debe ser DD/MM/AAAA: ";
 		System.out.print(utils.AnsiColors.ANSI_CYAN + "\nFecha del siniestro (DD/MM/AAAA):"
 				+ utils.AnsiColors.ANSI_RESET);
