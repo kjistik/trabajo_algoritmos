@@ -10,7 +10,7 @@ public class Logica {
 	boolean salir = false;
 
 	public void cargarDatosSiniestros() {
-		String equalSeparador = "========================================================================================";
+		String equalSeparador = "=".repeat(72);
 		// Capturamos la opción del usuario en base al menu principal.
 		System.out.println(equalSeparador);
 		System.out.println("Bienvenido al registro de ingreso de nuevos incidentes.");

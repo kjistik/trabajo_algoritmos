@@ -37,7 +37,7 @@ public class Data {
 		id_denunciantes++;
 	}
 
-	static ArrayList<Denunciante> denunciantes = new ArrayList<Denunciante>();
+	public static ArrayList<Denunciante> denunciantes = new ArrayList<Denunciante>();
 
 	public static Denunciante getDenunciante(int index) {
 		try {
@@ -45,6 +45,27 @@ public class Data {
 		} catch (IndexOutOfBoundsException e) {
 			return null;
 		}
+	}
+
+	public static void mostrarDenunciantes() {
+		for (Denunciante denunciante : denunciantes) {
+			System.out.println(denunciante.getId() + " - " + denunciante.getDNI());
+		}
+
+	}
+
+	public static boolean denunciantes_registrados() {
+		if (denunciantes.size() == 0) {
+			return false;
+		} else {
+			for (Denunciante denunciante : denunciantes) {
+				if (denunciante.equals(null)) {
+					return false;
+				}
+			}
+		}
+
+		return true;
 	}
 
 	public static void add_denunciante(Denunciante denunciante) {

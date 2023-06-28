@@ -122,33 +122,38 @@ public class Core {
 	// Este metodo es practicamente igual al anterior
 	// pero ahora le pedimos al usuario datos del vehículo siniestrado
 	public void cargarInfoVehiculo() {
-		Data.increase_asegurados();
-		infoAsegurado.setId_denunciante(currentDenunciante.getId_denunciante());
-		infoAsegurado.setId_asegurado(Data.getId_asegurados());
+		if (Data.denunciantes_registrados()) {
+			Data.increase_asegurados();
+			Data.mostrarDenunciantes();
+			infoAsegurado.setId_denunciante(getInput());
+			infoAsegurado.setId_asegurado(Data.getId_asegurados());
 
-		String setMarcaError = "El nombre debe empezar en mayúsculas: ";
-		System.out.print(utils.AnsiColors.ANSI_CYAN + "\nMarca del vehículo del denunciante:"
-				+ utils.AnsiColors.ANSI_RESET);
-		infoAsegurado.setMarca(validator.getRegexNombres(nombresCompuesto, setMarcaError));
+			String setMarcaError = "El nombre debe empezar en mayúsculas: ";
+			System.out.print(utils.AnsiColors.ANSI_CYAN + "\nMarca del vehículo del denunciante:"
+					+ utils.AnsiColors.ANSI_RESET);
+			infoAsegurado.setMarca(validator.getRegexNombres(nombresCompuesto, setMarcaError));
 
-		String setModeloError = "El modelo debe empezar en mayúsculas: ";
-		System.out.print(
-				utils.AnsiColors.ANSI_CYAN + "Modelo del vehículo:" + utils.AnsiColors.ANSI_RESET);
-		infoAsegurado.setModelo(validator.getRegexNombres(anyComp, setModeloError));
+			String setModeloError = "El modelo debe empezar en mayúsculas: ";
+			System.out.print(
+					utils.AnsiColors.ANSI_CYAN + "Modelo del vehículo:" + utils.AnsiColors.ANSI_RESET);
+			infoAsegurado.setModelo(validator.getRegexNombres(anyComp, setModeloError));
 
-		String setAnioError = "El año debe ser válido: ";
-		System.out.print(
-				utils.AnsiColors.ANSI_CYAN + "Año del vehículo:" + utils.AnsiColors.ANSI_RESET);
-		infoAsegurado.setAnio(validator.getRegexNumeros(anoSimple, setAnioError));
+			String setAnioError = "El año debe ser válido: ";
+			System.out.print(
+					utils.AnsiColors.ANSI_CYAN + "Año del vehículo:" + utils.AnsiColors.ANSI_RESET);
+			infoAsegurado.setAnio(validator.getRegexNumeros(anoSimple, setAnioError));
 
-		String setApellidoError = "El formato correcto puede ser XXX### o XX###XX: ";
-		System.out.print(
-				utils.AnsiColors.ANSI_CYAN + "Patente del vehículo:" + utils.AnsiColors.ANSI_RESET);
-		infoAsegurado.setPatente(validator.getRegexNombres(patenteComp, setApellidoError));
+			String setApellidoError = "El formato correcto puede ser XXX### o XX###XX: ";
+			System.out.print(
+					utils.AnsiColors.ANSI_CYAN + "Patente del vehículo:" + utils.AnsiColors.ANSI_RESET);
+			infoAsegurado.setPatente(validator.getRegexNombres(patenteComp, setApellidoError));
 
-		Data.add_asegurado(infoAsegurado);
-		currentAsegurado = infoAsegurado;
-		infoAsegurado = null;
+			Data.add_asegurado(infoAsegurado);
+			currentAsegurado = infoAsegurado;
+			infoAsegurado = null;
+		} else {
+			System.out.println("No hay denunciantes disponibles.");
+		}
 	}
 
 	// Lo mismo acá, este método hace lo mismo que los 2 anteriores
@@ -157,7 +162,7 @@ public class Core {
 		Data.increase_incidentes();
 		infoSiniestro.setId_asegurado(getInput());
 		infoSiniestro.setId(Data.getId_incidentes());
-	
+
 		String setFechaError = "El formato correcto debe ser DD/MM/AAAA: ";
 		System.out.print(utils.AnsiColors.ANSI_CYAN + "\nFecha del siniestro (DD/MM/AAAA):"
 				+ utils.AnsiColors.ANSI_RESET);
@@ -181,7 +186,7 @@ public class Core {
 		String setDaniosError = "La cadena solo puede contener Letras, comas, puntos y números: ";
 		System.out.print(utils.AnsiColors.ANSI_CYAN + "Descripción de los daños totales:"
 				+ utils.AnsiColors.ANSI_RESET);
-		infoSiniestro.setDanios(validator.getRegexStringComp(descText, setDaniosError));
+		infoSiniestro.setDanios(sc.nextLine());
 		Data.add_siniestro(infoSiniestro);
 		currentIncident = infoSiniestro;
 		infoSiniestro = null;
