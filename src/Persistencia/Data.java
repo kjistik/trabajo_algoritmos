@@ -80,6 +80,27 @@ public class Data {
 
 	static ArrayList<Asegurado> asegurados = new ArrayList<Asegurado>();
 
+	public static void mostrarAsegurados() {
+		for (Asegurado asegurado : asegurados) {
+			System.out.println(asegurado.getId_asegurado() + " - " + asegurado.getPatente());
+		}
+
+	}
+
+	public static boolean asegurados_registrados() {
+		if (asegurados.size() == 0) {
+			return false;
+		} else {
+			for (Asegurado asegurado : asegurados) {
+				if (asegurado.equals(null)) {
+					return false;
+				}
+			}
+		}
+
+		return true;
+	}
+
 	public static void add_asegurado(Asegurado asegurado) {
 		asegurados.add(asegurado);
 	}

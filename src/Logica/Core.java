@@ -125,6 +125,7 @@ public class Core {
 		if (Data.denunciantes_registrados()) {
 			Data.increase_asegurados();
 			Data.mostrarDenunciantes();
+			System.out.println("Ingrese el valor del denunciante asociado");
 			infoAsegurado.setId_denunciante(getInput());
 			infoAsegurado.setId_asegurado(Data.getId_asegurados());
 
@@ -159,37 +160,43 @@ public class Core {
 	// Lo mismo acá, este método hace lo mismo que los 2 anteriores
 	// Pero pide los datos precisos del accidente.
 	public void cargarInfoAccidentes() {
-		Data.increase_incidentes();
-		infoSiniestro.setId_asegurado(getInput());
-		infoSiniestro.setId(Data.getId_incidentes());
+		if (Data.asegurados_registrados()) {
+			Data.increase_incidentes();
+			Data.mostrarAsegurados();
+			System.out.println("Ingrese el valor asociado a su vehículo asegurado");
+			infoSiniestro.setId_asegurado(getInput());
+			infoSiniestro.setId(Data.getId_incidentes());
 
-		String setFechaError = "El formato correcto debe ser DD/MM/AAAA: ";
-		System.out.print(utils.AnsiColors.ANSI_CYAN + "\nFecha del siniestro (DD/MM/AAAA):"
-				+ utils.AnsiColors.ANSI_RESET);
-		infoSiniestro.setFecha(validator.getRegexStringComp(fechaRegex, setFechaError));
+			String setFechaError = "El formato correcto debe ser DD/MM/AAAA: ";
+			System.out.print(utils.AnsiColors.ANSI_CYAN + "\nFecha del siniestro (DD/MM/AAAA):"
+					+ utils.AnsiColors.ANSI_RESET);
+			infoSiniestro.setFecha(validator.getRegexStringComp(fechaRegex, setFechaError));
 
-		String setHoraError = "El formato correcto debe ser HH:MM: ";
-		System.out.print(utils.AnsiColors.ANSI_CYAN + "Hora del siniestro (HH:MM):"
-				+ utils.AnsiColors.ANSI_RESET);
-		infoSiniestro.setHora(validator.getRegexStringComp(horaRegex, setHoraError));
+			String setHoraError = "El formato correcto debe ser HH:MM: ";
+			System.out.print(utils.AnsiColors.ANSI_CYAN + "Hora del siniestro (HH:MM):"
+					+ utils.AnsiColors.ANSI_RESET);
+			infoSiniestro.setHora(validator.getRegexStringComp(horaRegex, setHoraError));
 
-		String setLugarError = "La cadena solo puede contener Letras, comas y números: ";
-		System.out.print(utils.AnsiColors.ANSI_CYAN + "Lugar del hecho (Localidad, Dirección):"
-				+ utils.AnsiColors.ANSI_RESET);
-		infoSiniestro.setLugar(validator.getRegexStringComp(locationRegex, setLugarError));
+			String setLugarError = "La cadena solo puede contener Letras, comas y números: ";
+			System.out.print(utils.AnsiColors.ANSI_CYAN + "Lugar del hecho (Localidad, Dirección):"
+					+ utils.AnsiColors.ANSI_RESET);
+			infoSiniestro.setLugar(validator.getRegexStringComp(locationRegex, setLugarError));
 
-		String setDescripcionError = "La cadena solo puede contener Letras, comas, puntos y números: ";
-		System.out.print(utils.AnsiColors.ANSI_CYAN + "Descripción del hecho:"
-				+ utils.AnsiColors.ANSI_RESET);
-		infoSiniestro.setDescripcion(sc.nextLine());
+			String setDescripcionError = "La cadena solo puede contener Letras, comas, puntos y números: ";
+			System.out.print(utils.AnsiColors.ANSI_CYAN + "Descripción del hecho:"
+					+ utils.AnsiColors.ANSI_RESET);
+			infoSiniestro.setDescripcion(sc.nextLine());
 
-		String setDaniosError = "La cadena solo puede contener Letras, comas, puntos y números: ";
-		System.out.print(utils.AnsiColors.ANSI_CYAN + "Descripción de los daños totales:"
-				+ utils.AnsiColors.ANSI_RESET);
-		infoSiniestro.setDanios(sc.nextLine());
-		Data.add_siniestro(infoSiniestro);
-		currentIncident = infoSiniestro;
-		infoSiniestro = null;
+			String setDaniosError = "La cadena solo puede contener Letras, comas, puntos y números: ";
+			System.out.print(utils.AnsiColors.ANSI_CYAN + "Descripción de los daños totales:"
+					+ utils.AnsiColors.ANSI_RESET);
+			infoSiniestro.setDanios(sc.nextLine());
+			Data.add_siniestro(infoSiniestro);
+			currentIncident = infoSiniestro;
+			infoSiniestro = null;
+		} else {
+			System.out.println("Cree un vehículo asegurado primero");
+		}
 	}
 
 	// Acá mande todo en un mismo método
