@@ -52,8 +52,10 @@ public class Data {
 	}
 
 	public static void mostrarDenunciantes() {
-		for (Denunciante denunciante : denunciantes) {
-			System.out.println(denunciante.getId() + " - " + denunciante.getDNI());
+		if (denunciantes_registrados()) {
+			for (Denunciante denunciante : denunciantes) {
+				System.out.println(denunciante.getId() + " - " + denunciante.getDNI());
+			}
 		}
 
 	}
@@ -82,9 +84,9 @@ public class Data {
 		incidentes.add(incidente);
 	}
 
-	public static Siniestro getInsidenteById(int index){
+	public static Siniestro getInsidenteById(int index) {
 		try {
-			
+
 			return incidentes.get(index);
 		} catch (IndexOutOfBoundsException e) {
 			return null;
@@ -94,21 +96,21 @@ public class Data {
 	static ArrayList<Asegurado> asegurados = new ArrayList<Asegurado>();
 
 	public static void mostrarAsegurados() {
-		for (Asegurado asegurado : asegurados) {
-			System.out.println(asegurado.getId_asegurado() + " - " + asegurado.getPatente());
+		if (asegurados_registrados()) {
+			for (Asegurado asegurado : asegurados) {
+				System.out.println(asegurado.getId_asegurado() + " - " + asegurado.getPatente());
+			}
 		}
 
 	}
 
 	public static Asegurado getAseguradoById(int index) {
-		try{
+		try {
 			return asegurados.get(index);
-		}catch(IndexOutOfBoundsException e){
+		} catch (IndexOutOfBoundsException e) {
 			return null;
 		}
 	}
-
-
 
 	public static boolean asegurados_registrados() {
 		if (asegurados.size() == 0) {
@@ -144,22 +146,21 @@ public class Data {
 		damages.add(damage);
 	}
 
-	public static ArrayList<Object> getDamagesBySiniestroId(int siniestroId){
-		
+	public static ArrayList<Object> getDamagesBySiniestroId(int siniestroId) {
+
 		ArrayList<Object> result = new ArrayList<Object>();
 
-		for(Object damage : damages){
-			if(damage instanceof SiniestroVehiculo && ((SiniestroVehiculo) damage).getId_siniestro() == siniestroId){
+		for (Object damage : damages) {
+			if (damage instanceof SiniestroVehiculo && ((SiniestroVehiculo) damage).getId_siniestro() == siniestroId) {
 				result.add(damage);
-			}else if(damage instanceof Lesiones && ((Lesiones) damage).getId_siniestro() == siniestroId){
+			} else if (damage instanceof Lesiones && ((Lesiones) damage).getId_siniestro() == siniestroId) {
 				result.add(damage);
-			}else if(damage instanceof Mueble && ((Mueble) damage).getId_siniestro() == siniestroId){
+			} else if (damage instanceof Mueble && ((Mueble) damage).getId_siniestro() == siniestroId) {
 				result.add(damage);
-			}else if(damage instanceof Inmuebles && ((Inmuebles) damage).getId_siniestro() == siniestroId){
+			} else if (damage instanceof Inmuebles && ((Inmuebles) damage).getId_siniestro() == siniestroId) {
 				result.add(damage);
 			}
 		}
-
 		return result;
 	}
 }
