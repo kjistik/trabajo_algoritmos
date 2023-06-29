@@ -3,7 +3,11 @@ package Persistencia;
 import java.util.ArrayList;
 import Clases.Asegurado;
 import Clases.Denunciante;
+import Clases.Inmuebles;
+import Clases.Lesiones;
+import Clases.Mueble;
 import Clases.Siniestro;
+import Clases.SiniestroVehiculo;
 
 public class Data {
 
@@ -78,6 +82,15 @@ public class Data {
 		incidentes.add(incidente);
 	}
 
+	public static Siniestro getInsidenteById(int index){
+		try {
+			
+			return incidentes.get(index);
+		} catch (IndexOutOfBoundsException e) {
+			return null;
+		}
+	}
+
 	static ArrayList<Asegurado> asegurados = new ArrayList<Asegurado>();
 
 	public static void mostrarAsegurados() {
@@ -86,6 +99,16 @@ public class Data {
 		}
 
 	}
+
+	public static Asegurado getAseguradoById(int index) {
+		try{
+			return asegurados.get(index);
+		}catch(IndexOutOfBoundsException e){
+			return null;
+		}
+	}
+
+
 
 	public static boolean asegurados_registrados() {
 		if (asegurados.size() == 0) {
@@ -119,5 +142,24 @@ public class Data {
 
 	public static void add_damages(Object damage) {
 		damages.add(damage);
+	}
+
+	public static ArrayList<Object> getDamagesBySiniestroId(int siniestroId){
+		
+		ArrayList<Object> result = new ArrayList<Object>();
+
+		for(Object damage : damages){
+			if(damage instanceof SiniestroVehiculo && ((SiniestroVehiculo) damage).getId_siniestro() == siniestroId){
+				result.add(damage);
+			}else if(damage instanceof Lesiones && ((Lesiones) damage).getId_siniestro() == siniestroId){
+				result.add(damage);
+			}else if(damage instanceof Mueble && ((Mueble) damage).getId_siniestro() == siniestroId){
+				result.add(damage);
+			}else if(damage instanceof Inmuebles && ((Inmuebles) damage).getId_siniestro() == siniestroId){
+				result.add(damage);
+			}
+		}
+
+		return result;
 	}
 }

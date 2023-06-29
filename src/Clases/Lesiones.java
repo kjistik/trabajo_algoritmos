@@ -74,5 +74,17 @@ public class Lesiones {
     public void setId_siniestro(int id_siniestro) {
         this.id_siniestro = id_siniestro;
     }
+
+    @Override
+    public String toString(){
+        return "Lesiones\n"+
+               "Id: " + id + 
+               "\nCobertuera: " + covertura +
+               "\nDenuncia: " + denuncia_int +
+               "\nCertificado: " + certificado +
+               "\nCertificado de salud: " + cert_salud +
+               "\nDni: " + dni + 
+               "\nLesionado: " + lesionado;
+    }
     
 }

@@ -125,7 +125,23 @@ public class SiniestroVehiculo {
         return id_siniestro;
     }
 
-    public void setId_siniestro(int id_sinistro) {
-        this.id_siniestro = id_sinistro;
+    public void setId_siniestro(int id_siniestro) {
+        this.id_siniestro = id_siniestro;
+    }
+
+    @Override
+    public String toString(){
+        return "Siniestro Vehiculo\n" +
+               "\nid: " + id +
+               "\nCobertura: " + cobertura +
+               "\nDenuncia Interna: " + denunciaInterna + 
+               "\nFranquicia: " + franquicia +
+               "\nCertificado de cobertura: " + certificadoCobertura +
+               "\nNota de franquicia: " + notaFranquicia +
+               "\nLicencia de conducir: " + licenciaConducir +
+               "\nTarjeta Verde: " + tarjetaVerde +
+               "\nFoto del vehiculo: " + fotoVehiculos +
+               "\nPresupuesto de reparación: " + presupuestoReparacion;
+               
     }
 }

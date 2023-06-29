@@ -21,7 +21,7 @@ public class Logica {
 
 		do {
 			System.out.println(
-					"1: nuevo denunciante, 2: nuevo vehícula asegurado, 3:nuevo incidente, 4: nuevo daño, 0 salir");
+					"1: nuevo denunciante, 2: nuevo vehículo asegurado, 3:nuevo incidente, 4: nuevo daño, 0 salir");
 			switch (metodo.getInput()) {
 				case 1:
 					// Capturamos el input del user

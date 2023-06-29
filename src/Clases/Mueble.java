@@ -114,5 +114,18 @@ public class Mueble {
     public void setId_siniestro(int id_siniestro) {
         this.id_siniestro = id_siniestro;
     }
-
+ 
+    @Override
+    public String toString(){
+        return "Inmueble\n"+
+               "Id: " + id +
+               "\nDni: " + dni +
+               "\nDenuncia interna: " +
+               "\nSeguro: " + seguro +
+               "\nCertificado: " + certificado + 
+               "\nDescripción: " + descripcion + 
+               "\nFotos: " + fotos + 
+               "\nPresupuesto: " + presupuesto + 
+               "\nFactura: " + factura; 
+    }
 }

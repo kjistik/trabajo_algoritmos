@@ -1,6 +1,7 @@
 // Definimos que Core va a ser parte del paquete Logica
 package Logica;
 
+import java.util.ArrayList;
 // Importamos 2 utilidades de la libreria de utilidades de Java
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -249,8 +250,7 @@ public class Core {
 				String setCertificadoError = "El formato es inválido: ";
 				System.out.print(utils.AnsiColors.ANSI_CYAN + "Ingrese el certificado de denuncia: "
 						+ utils.AnsiColors.ANSI_RESET);
-				infoLesiones
-						.setCertificado(validator.getRegexNombres(anyComp, setCertificadoError));
+				infoLesiones.setCertificado(validator.getRegexNombres(anyComp, setCertificadoError));
 			}
 
 			String setCertSaludError = "El formato es inválido: ";
@@ -575,31 +575,55 @@ public class Core {
 	}
 
 	public void getInfo() {
-		System.out.println("¿Qué información necesita?");
-		System.out.println(AnsiColors.ANSI_YELLOW + "1" + AnsiColors.ANSI_RESET + " Denunciantes");
-		System.out.println(AnsiColors.ANSI_YELLOW + "2" + AnsiColors.ANSI_RESET + " Vehículos asegurados");
-		System.out.println(AnsiColors.ANSI_YELLOW + "3" + AnsiColors.ANSI_RESET + " Incidentes");
-		System.out.println(AnsiColors.ANSI_YELLOW + "4" + AnsiColors.ANSI_RESET + " Daños registrados");
-		switch (getInput()) {
-			case 1:
-				System.out.println("Ingrese el número de identificación");
-				display = Data.getDenunciante(getInput());
-				break;
-			case 2:
-				System.out.println("Ingrese el número de identificación");
-				break;
-			case 3:
-				System.out.println("Ingrese el número de identificación");
-				break;
-			case 4:
-				System.out.println("Ingrese el número de identificación");
-				break;
-			case 5:
-				System.out.println("Ingrese el número de identificación");
-				break;
-			default:
-				System.out.println("Esta no es una opción válida");
-				break;
+		boolean salir = false;
+
+		do {
+			System.out.println("¿Qué información necesita?");
+			System.out.println(AnsiColors.ANSI_YELLOW + "1" + AnsiColors.ANSI_RESET + " Denunciante");
+			System.out.println(AnsiColors.ANSI_YELLOW + "2" + AnsiColors.ANSI_RESET + " Vehículo asegurado");
+			System.out.println(AnsiColors.ANSI_YELLOW + "3" + AnsiColors.ANSI_RESET + " Incidente");
+			System.out.println(AnsiColors.ANSI_YELLOW + "4" + AnsiColors.ANSI_RESET + " Daños registrados");
+			System.out.println(AnsiColors.ANSI_YELLOW + "5" + AnsiColors.ANSI_RESET + " Volver al menu principal");
+
+			switch (getInput()) {
+				case 1:
+					System.out.println("Ingrese el número de identificación");
+					display = Data.getDenunciante(getInput());
+					printData(display, "denunciante");
+					break;
+				case 2:
+					System.out.println("Ingrese el número de identificación");
+					display = Data.getAseguradoById(getInput());
+					printData(display, "vehiculo asegudaro");
+					break;
+				case 3:
+					System.out.println("Ingrese el número de identificación");
+					display = Data.getInsidenteById(getInput());
+					printData(display, "incidente");
+					break;
+				case 4:
+					System.out.println("Ingrese el número de identificacion de siniestro");
+					ArrayList<Object> damages = Data.getDamagesBySiniestroId(getInput());
+					damages.forEach(danio -> System.out.println(danio.toString()));
+					break;
+				case 5:
+					System.out.println(AnsiColors.ANSI_RED + "Volviendo..");
+					salir = !salir;
+					break;
+				default:
+					System.out.println("Esta no es una opción válida");
+					break;
+			}
+
+		}while(!salir);
+	}
+
+
+	public void printData(Object data, String dataType) {
+		if(data != null){
+			System.out.println(data.toString());
+		}else {
+			System.out.println("No se encontro ningún " + dataType + " con ese id");
 		}
 	}
 

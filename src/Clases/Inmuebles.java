@@ -82,4 +82,17 @@ public class Inmuebles {
     public void setPresupuesto(double presupuesto) {
         this.presupuesto = presupuesto;
     }
+
+    @Override
+    public String toString(){
+        return "Inmueble\n" +
+               "\nId: " + id +
+               "\nSeguro: "  + seguro +
+               "\nDenuncia Interna: " + denunciaInterna + 
+               "\nDni: " + dni +
+               "\nCertificado: " + certificado + 
+               "\nFotos: " + fotos + 
+               "\nImpuestos: " + impuesto + 
+               "\nPresupuesto: " + presupuesto;
+    }
 }
