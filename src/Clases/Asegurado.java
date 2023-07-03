@@ -1,5 +1,7 @@
 package Clases;
 
+import Persistencia.Data;
+
 public class Asegurado {
     String marca;
     String modelo;
@@ -7,6 +9,16 @@ public class Asegurado {
     Integer anio;
     int id_denunciante;
     int id_asegurado;
+
+    public static String displayInfo(int a) {
+        return Data.asegurados.get(a).toString();
+    }
+
+    @Override
+    public String toString() {
+        return "Vehículo " + marca + " " + modelo + " del año " + anio + " con la patente N° " + patente
+                + "\nRegistrado por: \n" + Denunciante.displayInfo(id_denunciante);
+    }
 
     public String getMarca() {
         return marca;

@@ -42,7 +42,8 @@ public class Mueble {
     // this.dni = dni;
     // this.presupuesto = presupuesto;
     // }
-    // Métodos para poder acceder y modificar las propiedades de la clase (get y set).
+    // Métodos para poder acceder y modificar las propiedades de la clase (get y
+    // set).
     public boolean getSeguro() {
         return seguro;
     }
@@ -114,18 +115,19 @@ public class Mueble {
     public void setId_siniestro(int id_siniestro) {
         this.id_siniestro = id_siniestro;
     }
- 
+
     @Override
-    public String toString(){
-        return "Inmueble\n"+
-               "Id: " + id +
-               "\nDni: " + dni +
-               "\nDenuncia interna: " +
-               "\nSeguro: " + seguro +
-               "\nCertificado: " + certificado + 
-               "\nDescripción: " + descripcion + 
-               "\nFotos: " + fotos + 
-               "\nPresupuesto: " + presupuesto + 
-               "\nFactura: " + factura; 
+    public String toString() {
+        return "Inmueble\n" +
+                "Id: " + id +
+                "\nDni: " + dni +
+                "\nDenuncia interna: " +
+                "\nSeguro: " + seguro +
+                "\nCertificado: " + certificado +
+                "\nDescripción: " + descripcion +
+                "\nFotos: " + fotos +
+                "\nPresupuesto: " + presupuesto +
+                "\nFactura: " + factura +
+                "\nRegistrado en el siguiente incidente:\n" + Siniestro.displayInfo(id_siniestro);
     }
 }

@@ -60,6 +60,15 @@ public class Data {
 
 	}
 
+	public static void mostrarIncidentes() {
+		if (incidentes_registrados()) {
+			for (Siniestro incidente : incidentes) {
+				System.out.println(incidente.getId() + " - " + incidente.getFecha() + " " + incidente.getHora());
+			}
+		}
+
+	}
+
 	public static boolean denunciantes_registrados() {
 		if (denunciantes.size() == 0) {
 			return false;
@@ -74,11 +83,25 @@ public class Data {
 		return true;
 	}
 
+	public static boolean incidentes_registrados() {
+		if (incidentes.size() == 0) {
+			return false;
+		} else {
+			for (Siniestro siniestro : incidentes) {
+				if (siniestro.equals(null)) {
+					return false;
+				}
+			}
+		}
+
+		return true;
+	}
+
 	public static void add_denunciante(Denunciante denunciante) {
 		denunciantes.add(denunciante);
 	}
 
-	static ArrayList<Siniestro> incidentes = new ArrayList<Siniestro>();
+	public static ArrayList<Siniestro> incidentes = new ArrayList<Siniestro>();
 
 	public static void add_siniestro(Siniestro incidente) {
 		incidentes.add(incidente);
@@ -93,7 +116,7 @@ public class Data {
 		}
 	}
 
-	static ArrayList<Asegurado> asegurados = new ArrayList<Asegurado>();
+	public static ArrayList<Asegurado> asegurados = new ArrayList<Asegurado>();
 
 	public static void mostrarAsegurados() {
 		if (asegurados_registrados()) {
@@ -132,7 +155,7 @@ public class Data {
 
 	public static int id_damages = -1;
 
-	static ArrayList<Object> damages = new ArrayList<Object>();
+	public static ArrayList<Object> damages = new ArrayList<Object>();
 
 	public static void increase_damages() {
 		id_damages++;

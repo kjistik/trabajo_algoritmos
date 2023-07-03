@@ -1,5 +1,7 @@
 package Clases;
 
+import Persistencia.Data;
+
 public class Siniestro {
     String fecha;
     String hora;
@@ -8,6 +10,17 @@ public class Siniestro {
     String danios;
     int id;
     int id_asegurado;
+
+public static String displayInfo(int a) {
+        return Data.incidentes.get(a).toString();
+    }
+
+    @Override
+    public String toString() {
+        return "Incidente ocurrido a las " + hora + " en " + lugar + "\nDescripción del hecho: "
+                + descripcion + "\nDescripción de los daños" + danios
+                + "\nSe encontró involucrado el siguiente vehículo: \n" + Asegurado.displayInfo(id_asegurado);
+    }
 
     public int getId() {
         return id;

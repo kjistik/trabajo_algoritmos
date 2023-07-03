@@ -1,10 +1,10 @@
 // Definimos que Core va a ser parte del paquete Logica
 package Logica;
 
-import java.util.ArrayList;
 // Importamos 2 utilidades de la libreria de utilidades de Java
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
 // Importamos las clases propias que vamos a usar
 import Clases.Asegurado;
 import Clases.Denunciante;
@@ -208,268 +208,280 @@ public class Core {
 	// Inmuebles
 	// La segunda parte la comento más abajo
 	public void setBooleanDeTiposDeDanios() {
-		System.out.print("\n" + AnsiColors.ANSI_CYAN
-				+ "Hay Lesiones corporales? Ingrese \"y\" si existen, \"n\" si no existen:"
-				+ AnsiColors.ANSI_RESET);
-		Boolean lesionesBool = getBool();
-		System.out.print(AnsiColors.ANSI_CYAN
-				+ "Hay daños a vehículos? Ingrese \"y\" si existen, \"n\" si no existen:"
-				+ AnsiColors.ANSI_RESET);
-		Boolean vehiculosDanadosBool = getBool();
-		System.out.print(AnsiColors.ANSI_CYAN
-				+ "Hay daños a de muebles? Ingrese \"y\" si existen, \"n\" si no existen:"
-				+ AnsiColors.ANSI_RESET);
-		Boolean mueblesDanadosBool = getBool();
-		System.out.print(AnsiColors.ANSI_CYAN
-				+ "Hay daños a propiedades? Ingrese \"y\" si existen, \"n\" si no existen:"
-				+ AnsiColors.ANSI_RESET);
-		Boolean inmueblesDanadosBool = getBool();
+		if (Data.incidentes_registrados()) {
+			System.out.print("\n" + AnsiColors.ANSI_CYAN
+					+ "Hay Lesiones corporales? Ingrese \"y\" si existen, \"n\" si no existen:"
+					+ AnsiColors.ANSI_RESET);
+			Boolean lesionesBool = getBool();
+			System.out.print(AnsiColors.ANSI_CYAN
+					+ "Hay daños a vehículos? Ingrese \"y\" si existen, \"n\" si no existen:"
+					+ AnsiColors.ANSI_RESET);
+			Boolean vehiculosDanadosBool = getBool();
+			System.out.print(AnsiColors.ANSI_CYAN
+					+ "Hay daños a de muebles? Ingrese \"y\" si existen, \"n\" si no existen:"
+					+ AnsiColors.ANSI_RESET);
+			Boolean mueblesDanadosBool = getBool();
+			System.out.print(AnsiColors.ANSI_CYAN
+					+ "Hay daños a propiedades? Ingrese \"y\" si existen, \"n\" si no existen:"
+					+ AnsiColors.ANSI_RESET);
+			Boolean inmueblesDanadosBool = getBool();
 
-		// Acá chequeamos si el usuario afirmó que hay lesiones
-		// Si hay lesiones se ejecuta lo siguiente y pedimos los datos
-		// requeridos para cargar a la Clase Lesiones
+			// Acá chequeamos si el usuario afirmó que hay lesiones
+			// Si hay lesiones se ejecuta lo siguiente y pedimos los datos
+			// requeridos para cargar a la Clase Lesiones
 
-		if (lesionesBool) {
-			Data.increase_damages();
-			infoLesiones.setId(Data.getId_damages());
-			infoLesiones.setId_siniestro(currentIncident.getId());
+			if (lesionesBool) {
+				Data.increase_damages();
+				Data.mostrarIncidentes();
+				System.out.println("Ingrese el valor del incidente asociado");
+				infoLesiones.setId(Data.getId_damages());
+				infoLesiones.setId_siniestro(getInput());
 
-			System.out.print(utils.AnsiColors.ANSI_CYAN
-					+ "El afectado tiene cobertura? Ingrese \"y\" si tiene, \"n\" si no tiene: "
-					+ utils.AnsiColors.ANSI_RESET);
-			infoLesiones.setCovertura(getBool());
-
-			String setDenunError = "El formato es inválido: ";
-			System.out.print(utils.AnsiColors.ANSI_CYAN + "Ingrese el número de denuncia: "
-					+ utils.AnsiColors.ANSI_RESET);
-			infoLesiones.setDenuncia_int(validator.getRegexNumeros(anoSimple, setDenunError));
-
-			// Checkeamos que Lesiones.getCovertura
-			// este seteado en true para pedir los datos de certificado
-			if (infoLesiones.getCovertura()) {
-				String setCertificadoError = "El formato es inválido: ";
-				System.out.print(utils.AnsiColors.ANSI_CYAN + "Ingrese el certificado de denuncia: "
+				System.out.print(utils.AnsiColors.ANSI_CYAN
+						+ "El afectado tiene cobertura? Ingrese \"y\" si tiene, \"n\" si no tiene: "
 						+ utils.AnsiColors.ANSI_RESET);
-				infoLesiones.setCertificado(validator.getRegexNombres(anyComp, setCertificadoError));
+				infoLesiones.setCovertura(getBool());
+
+				String setDenunError = "El formato es inválido: ";
+				System.out.print(utils.AnsiColors.ANSI_CYAN + "Ingrese el número de denuncia: "
+						+ utils.AnsiColors.ANSI_RESET);
+				infoLesiones.setDenuncia_int(validator.getRegexNumeros(anoSimple, setDenunError));
+
+				// Checkeamos que Lesiones.getCovertura
+				// este seteado en true para pedir los datos de certificado
+				if (infoLesiones.getCovertura()) {
+					String setCertificadoError = "El formato es inválido: ";
+					System.out.print(utils.AnsiColors.ANSI_CYAN + "Ingrese el certificado de denuncia: "
+							+ utils.AnsiColors.ANSI_RESET);
+					infoLesiones.setCertificado(validator.getRegexNombres(anyComp, setCertificadoError));
+				}
+
+				String setCertSaludError = "El formato es inválido: ";
+				System.out.print(
+						utils.AnsiColors.ANSI_CYAN + "Ingrese el certificado de salud de la víctima: "
+								+ utils.AnsiColors.ANSI_RESET);
+				infoLesiones.setCert_salud(validator.getRegexNombres(anyComp, setCertSaludError));
+
+				String setDniError = "El formato es inválido: ";
+				System.out.print(utils.AnsiColors.ANSI_CYAN + "Ingrese el DNI de la víctima: "
+						+ utils.AnsiColors.ANSI_RESET);
+				infoLesiones.setDni(validator.getRegexNumeros(dniComp, setDniError));
+
+				/*
+				 * String setLesionadoError = "El formato es inválido: ";
+				 * System.out.print(utils.AnsiColors.ANSI_CYAN + "No estoy seguro que es esto: "
+				 * +
+				 * utils.AnsiColors.ANSI_RESET);
+				 * infoLesiones.setLesionado(validator.getRegexNumeros(dniComp,
+				 * setLesionadoError));
+				 */
+				Data.add_damages(infoLesiones);
+				currentDamage = infoLesiones;
+				infoLesiones = null;
 			}
 
-			String setCertSaludError = "El formato es inválido: ";
-			System.out.print(
-					utils.AnsiColors.ANSI_CYAN + "Ingrese el certificado de salud de la víctima: "
-							+ utils.AnsiColors.ANSI_RESET);
-			infoLesiones.setCert_salud(validator.getRegexNombres(anyComp, setCertSaludError));
+			// Lo mismo acá. Si el usuario marcó que hay daños vehiculares
+			// habilitamos estos input para cargar la Clase SiniestroVehiculo
+			if (vehiculosDanadosBool) {
 
-			String setDniError = "El formato es inválido: ";
-			System.out.print(utils.AnsiColors.ANSI_CYAN + "Ingrese el DNI de la víctima: "
-					+ utils.AnsiColors.ANSI_RESET);
-			infoLesiones.setDni(validator.getRegexNumeros(dniComp, setDniError));
+				Data.increase_damages();
+				Data.mostrarIncidentes();
+				System.out.println("Ingrese el valor del incidente asociado");
+				infoSiniestroVehiculo.setId(Data.getId_damages());
+				infoSiniestroVehiculo.setId_siniestro(getInput());
 
-			/*
-			 * String setLesionadoError = "El formato es inválido: ";
-			 * System.out.print(utils.AnsiColors.ANSI_CYAN + "No estoy seguro que es esto: "
-			 * +
-			 * utils.AnsiColors.ANSI_RESET);
-			 * infoLesiones.setLesionado(validator.getRegexNumeros(dniComp,
-			 * setLesionadoError));
-			 */
-			Data.add_damages(infoLesiones);
-			currentDamage = infoLesiones;
-			infoLesiones = null;
-		}
-
-		// Lo mismo acá. Si el usuario marcó que hay daños vehiculares
-		// habilitamos estos input para cargar la Clase SiniestroVehiculo
-		if (vehiculosDanadosBool) {
-
-			Data.increase_damages();
-			infoSiniestroVehiculo.setId(Data.getId_damages());
-			infoSiniestroVehiculo.setId_siniestro(currentIncident.getId());
-
-			System.out.print(utils.AnsiColors.ANSI_CYAN
-					+ "El vehículo cuenta con cobertura? Ingrese \"y\" si tiene, \"n\" si no tiene: "
-					+ utils.AnsiColors.ANSI_RESET);
-			infoSiniestroVehiculo.setCobertura(getBool());
-
-			System.out.print(utils.AnsiColors.ANSI_CYAN
-					+ "El vehículo pertenece a una franquicia? Ingrese \"y\" si tiene, \"n\" si no tiene: "
-					+ utils.AnsiColors.ANSI_RESET);
-			infoSiniestroVehiculo.setFranquicia(getBool());
-
-			String setDenunIntError = "El formato es inválido: ";
-			System.out.print(
-					utils.AnsiColors.ANSI_CYAN + "Ingrese la identificación de denuncia interna: "
-							+ utils.AnsiColors.ANSI_RESET);
-			infoSiniestroVehiculo
-					.setDenunciaInterna(validator.getRegexStringComp(anyComp, setDenunIntError));
-
-			// Misma lógica acá, si el usuario marco que el vehiculo tiene seguro
-			// pedimos el certificado de seguro
-			if (infoSiniestroVehiculo.getCobertura()) {
-				String setCertCobertError = "El formato es inválido: ";
 				System.out.print(utils.AnsiColors.ANSI_CYAN
-						+ "Ingrese el certificado de cobertura del vahículo: "
+						+ "El vehículo cuenta con cobertura? Ingrese \"y\" si tiene, \"n\" si no tiene: "
 						+ utils.AnsiColors.ANSI_RESET);
-				infoSiniestroVehiculo.setCertificadoCobertura(
-						validator.getRegexStringComp(anyComp, setCertCobertError));
+				infoSiniestroVehiculo.setCobertura(getBool());
+
+				System.out.print(utils.AnsiColors.ANSI_CYAN
+						+ "El vehículo pertenece a una franquicia? Ingrese \"y\" si tiene, \"n\" si no tiene: "
+						+ utils.AnsiColors.ANSI_RESET);
+				infoSiniestroVehiculo.setFranquicia(getBool());
+
+				String setDenunIntError = "El formato es inválido: ";
+				System.out.print(
+						utils.AnsiColors.ANSI_CYAN + "Ingrese la identificación de denuncia interna: "
+								+ utils.AnsiColors.ANSI_RESET);
+				infoSiniestroVehiculo
+						.setDenunciaInterna(validator.getRegexStringComp(anyComp, setDenunIntError));
+
+				// Misma lógica acá, si el usuario marco que el vehiculo tiene seguro
+				// pedimos el certificado de seguro
+				if (infoSiniestroVehiculo.getCobertura()) {
+					String setCertCobertError = "El formato es inválido: ";
+					System.out.print(utils.AnsiColors.ANSI_CYAN
+							+ "Ingrese el certificado de cobertura del vahículo: "
+							+ utils.AnsiColors.ANSI_RESET);
+					infoSiniestroVehiculo.setCertificadoCobertura(
+							validator.getRegexStringComp(anyComp, setCertCobertError));
+				}
+
+				String setNotaFranqError = "El formato es inválido: ";
+				System.out.print(utils.AnsiColors.ANSI_CYAN
+						+ "Ingrese la Nota de Franquicia del vahículo: " + utils.AnsiColors.ANSI_RESET);
+				infoSiniestroVehiculo
+						.setNotaFranquicia(validator.getRegexStringComp(anyComp, setNotaFranqError));
+
+				String setLicencConducirError = "El formato es inválido: ";
+				System.out.print(
+						utils.AnsiColors.ANSI_CYAN + "Ingrese la licencia de conducir del conductor: "
+								+ utils.AnsiColors.ANSI_RESET);
+				infoSiniestroVehiculo.setLicenciaConducir(
+						validator.getRegexStringComp(anyComp, setLicencConducirError));
+
+				String setTarjVerdeError = "El formato es inválido: ";
+				System.out.print(utils.AnsiColors.ANSI_CYAN + "Ingrese la tarjeta verde del vehículo: "
+						+ utils.AnsiColors.ANSI_RESET);
+				infoSiniestroVehiculo
+						.setTarjetaVerde(validator.getRegexStringComp(anyComp, setTarjVerdeError));
+
+				String setFotoError = "El formato es inválido: ";
+				System.out.print(utils.AnsiColors.ANSI_CYAN + "Cargue las fotos aquí: "
+						+ utils.AnsiColors.ANSI_RESET);
+				infoSiniestroVehiculo
+						.setFotoVehiculos(validator.getRegexStringComp(anyComp, setFotoError));
+
+				String setPresupuestoError = "El formato es inválido: ";
+				System.out.print(utils.AnsiColors.ANSI_CYAN
+						+ "Ingrese el presupuesto obtenido para el vehículo: "
+						+ utils.AnsiColors.ANSI_RESET);
+				infoSiniestroVehiculo.setPresupuestoReparacion(
+						validator.getRegexNumeros(anoSimple, setPresupuestoError));
+
+				Data.add_damages(infoSiniestroVehiculo);
+				currentDamage = infoSiniestroVehiculo;
+				infoSiniestroVehiculo = null;
 			}
 
-			String setNotaFranqError = "El formato es inválido: ";
-			System.out.print(utils.AnsiColors.ANSI_CYAN
-					+ "Ingrese la Nota de Franquicia del vahículo: " + utils.AnsiColors.ANSI_RESET);
-			infoSiniestroVehiculo
-					.setNotaFranquicia(validator.getRegexStringComp(anyComp, setNotaFranqError));
+			// Lo mismo acá, si el usuario marcó que hay daños a Muebles
+			// habilitamos la toma de datos de la Clase Mueble
+			if (mueblesDanadosBool) {
 
-			String setLicencConducirError = "El formato es inválido: ";
-			System.out.print(
-					utils.AnsiColors.ANSI_CYAN + "Ingrese la licencia de conducir del conductor: "
-							+ utils.AnsiColors.ANSI_RESET);
-			infoSiniestroVehiculo.setLicenciaConducir(
-					validator.getRegexStringComp(anyComp, setLicencConducirError));
+				Data.increase_damages();
+				Data.mostrarIncidentes();
+				System.out.println("Ingrese el valor del incidente asociado");
+				infoMueble.setId(Data.getId_damages());
+				infoMueble.setId_siniestro(getInput());
 
-			String setTarjVerdeError = "El formato es inválido: ";
-			System.out.print(utils.AnsiColors.ANSI_CYAN + "Ingrese la tarjeta verde del vehículo: "
-					+ utils.AnsiColors.ANSI_RESET);
-			infoSiniestroVehiculo
-					.setTarjetaVerde(validator.getRegexStringComp(anyComp, setTarjVerdeError));
-
-			String setFotoError = "El formato es inválido: ";
-			System.out.print(utils.AnsiColors.ANSI_CYAN + "Cargue las fotos aquí: "
-					+ utils.AnsiColors.ANSI_RESET);
-			infoSiniestroVehiculo
-					.setFotoVehiculos(validator.getRegexStringComp(anyComp, setFotoError));
-
-			String setPresupuestoError = "El formato es inválido: ";
-			System.out.print(utils.AnsiColors.ANSI_CYAN
-					+ "Ingrese el presupuesto obtenido para el vehículo: "
-					+ utils.AnsiColors.ANSI_RESET);
-			infoSiniestroVehiculo.setPresupuestoReparacion(
-					validator.getRegexNumeros(anoSimple, setPresupuestoError));
-
-			Data.add_damages(infoSiniestroVehiculo);
-			currentDamage = infoSiniestroVehiculo;
-			infoSiniestroVehiculo = null;
-		}
-
-		// Lo mismo acá, si el usuario marcó que hay daños a Muebles
-		// habilitamos la toma de datos de la Clase Mueble
-		if (mueblesDanadosBool) {
-
-			Data.increase_damages();
-			infoMueble.setId(Data.getId_damages());
-			infoMueble.setId_siniestro(currentIncident.getId());
-
-			System.out.print(utils.AnsiColors.ANSI_CYAN
-					+ "La propiedad cuenta con cobertura? Ingrese \"y\" si tiene, \"n\" si no tiene: "
-					+ utils.AnsiColors.ANSI_RESET);
-			infoMueble.setSeguros(getBool());
-
-			String setDenunIntError = "El formato es inválido: ";
-			System.out.print(
-					utils.AnsiColors.ANSI_CYAN + "Ingrese la identificación de denuncia interna: "
-							+ utils.AnsiColors.ANSI_RESET);
-			infoMueble.setDenuncia_interna(validator.getRegexStringComp(anyComp, setDenunIntError));
-
-			// Misma lógica, si Mueble tiene cobertura
-			// habilitamos este input para pedir el certificado
-			if (infoMueble.getSeguro()) {
-				String setCertCobertError = "El formato es inválido: ";
 				System.out.print(utils.AnsiColors.ANSI_CYAN
-						+ "Ingrese el certificado de cobertura del mueble: "
+						+ "La propiedad cuenta con cobertura? Ingrese \"y\" si tiene, \"n\" si no tiene: "
 						+ utils.AnsiColors.ANSI_RESET);
-				infoMueble
-						.setCertificado(validator.getRegexStringComp(anyComp, setCertCobertError));
+				infoMueble.setSeguros(getBool());
+
+				String setDenunIntError = "El formato es inválido: ";
+				System.out.print(
+						utils.AnsiColors.ANSI_CYAN + "Ingrese la identificación de denuncia interna: "
+								+ utils.AnsiColors.ANSI_RESET);
+				infoMueble.setDenuncia_interna(validator.getRegexStringComp(anyComp, setDenunIntError));
+
+				// Misma lógica, si Mueble tiene cobertura
+				// habilitamos este input para pedir el certificado
+				if (infoMueble.getSeguro()) {
+					String setCertCobertError = "El formato es inválido: ";
+					System.out.print(utils.AnsiColors.ANSI_CYAN
+							+ "Ingrese el certificado de cobertura del mueble: "
+							+ utils.AnsiColors.ANSI_RESET);
+					infoMueble
+							.setCertificado(validator.getRegexStringComp(anyComp, setCertCobertError));
+				}
+
+				String setDescError = "El formato es inválido: ";
+				System.out.print(utils.AnsiColors.ANSI_CYAN
+						+ "Ingrese descripción de los daños producidos al mueble: "
+						+ utils.AnsiColors.ANSI_RESET);
+				infoMueble.setDescripcion(validator.getRegexStringComp(anyComp, setDescError));
+
+				String setFotoError = "El formato es inválido: ";
+				System.out.print(utils.AnsiColors.ANSI_CYAN + "Cargue las fotos aquí: "
+						+ utils.AnsiColors.ANSI_RESET);
+				infoMueble.setFotos(validator.getRegexStringComp(anyComp, setFotoError));
+
+				String setFacturaError = "El formato es inválido: ";
+				System.out.print(utils.AnsiColors.ANSI_CYAN
+						+ "Ingrese Facturas o recibos que contenga la dirección del mueble: "
+						+ utils.AnsiColors.ANSI_RESET);
+				infoMueble.setFactura(validator.getRegexStringComp(anyComp, setFacturaError));
+
+				String setDniError = "El input debe ser números válidos: ";
+				System.out.print(utils.AnsiColors.ANSI_CYAN
+						+ "Número de documento del dueño del mueble: " + utils.AnsiColors.ANSI_RESET);
+				infoMueble.setDni(validator.getRegexNumeros(dniComp, setDniError));
+
+				String setPresupuestoError = "El formato es inválido: ";
+				System.out.print(
+						utils.AnsiColors.ANSI_CYAN + "Ingrese el presupuesto obtenido para el mueble: "
+								+ utils.AnsiColors.ANSI_RESET);
+				infoMueble.setPresupuesto(validator.getRegexNumeros(anoSimple, setPresupuestoError));
+
+				Data.add_damages(infoMueble);
+				currentDamage = infoMueble;
+				infoMueble = null;
 			}
 
-			String setDescError = "El formato es inválido: ";
-			System.out.print(utils.AnsiColors.ANSI_CYAN
-					+ "Ingrese descripción de los daños producidos al mueble: "
-					+ utils.AnsiColors.ANSI_RESET);
-			infoMueble.setDescripcion(validator.getRegexStringComp(anyComp, setDescError));
+			// Lo mismo acá, si el usuario marcó que hay daños a pripiedades
+			// inmuebles habilitamos esto para pedir por input
+			// y cargar la Clase Inmueble con los datos
+			if (inmueblesDanadosBool) {
 
-			String setFotoError = "El formato es inválido: ";
-			System.out.print(utils.AnsiColors.ANSI_CYAN + "Cargue las fotos aquí: "
-					+ utils.AnsiColors.ANSI_RESET);
-			infoMueble.setFotos(validator.getRegexStringComp(anyComp, setFotoError));
+				Data.increase_damages();
+				Data.mostrarIncidentes();
+				System.out.println("Ingrese el valor del incidente asociado");
+				infoInmuebles.setId(Data.getId_damages());
+				infoInmuebles.setId_siniestro(getInput());
 
-			String setFacturaError = "El formato es inválido: ";
-			System.out.print(utils.AnsiColors.ANSI_CYAN
-					+ "Ingrese Facturas o recibos que contenga la dirección del mueble: "
-					+ utils.AnsiColors.ANSI_RESET);
-			infoMueble.setFactura(validator.getRegexStringComp(anyComp, setFacturaError));
-
-			String setDniError = "El input debe ser números válidos: ";
-			System.out.print(utils.AnsiColors.ANSI_CYAN
-					+ "Número de documento del dueño del mueble: " + utils.AnsiColors.ANSI_RESET);
-			infoMueble.setDni(validator.getRegexNumeros(dniComp, setDniError));
-
-			String setPresupuestoError = "El formato es inválido: ";
-			System.out.print(
-					utils.AnsiColors.ANSI_CYAN + "Ingrese el presupuesto obtenido para el mueble: "
-							+ utils.AnsiColors.ANSI_RESET);
-			infoMueble.setPresupuesto(validator.getRegexNumeros(anoSimple, setPresupuestoError));
-
-			Data.add_damages(infoMueble);
-			currentDamage = infoMueble;
-			infoMueble = null;
-		}
-
-		// Lo mismo acá, si el usuario marcó que hay daños a pripiedades
-		// inmuebles habilitamos esto para pedir por input
-		// y cargar la Clase Inmueble con los datos
-		if (inmueblesDanadosBool) {
-
-			Data.increase_damages();
-			infoInmuebles.setId(Data.getId_damages());
-			infoInmuebles.setId_siniestro(currentIncident.getId());
-
-			System.out.print(utils.AnsiColors.ANSI_CYAN
-					+ "El bien inmueble cuenta con cobertura? Ingrese \"y\" si tiene, \"n\" si no tiene: "
-					+ utils.AnsiColors.ANSI_RESET);
-			infoInmuebles.setSeguro(getBool());
-
-			String setDenunIntError = "El formato es inválido: ";
-			System.out.print(
-					utils.AnsiColors.ANSI_CYAN + "Ingrese la identificación de denuncia interna: "
-							+ utils.AnsiColors.ANSI_RESET);
-			infoInmuebles
-					.setDenunciaInterna(validator.getRegexStringComp(anyComp, setDenunIntError));
-
-			// Misma lógica, si el usuario confirma que el Inmueble
-			// tiene seguro, habilitamos el input para requerir
-			// el certificado de seguro del Inmueble
-			if (infoInmuebles.getSeguro()) {
-				String setCertCobertError = "El formato es inválido: ";
 				System.out.print(utils.AnsiColors.ANSI_CYAN
-						+ "Ingrese el certificado de cobertura del bien inmueble: "
+						+ "El bien inmueble cuenta con cobertura? Ingrese \"y\" si tiene, \"n\" si no tiene: "
 						+ utils.AnsiColors.ANSI_RESET);
+				infoInmuebles.setSeguro(getBool());
+
+				String setDenunIntError = "El formato es inválido: ";
+				System.out.print(
+						utils.AnsiColors.ANSI_CYAN + "Ingrese la identificación de denuncia interna: "
+								+ utils.AnsiColors.ANSI_RESET);
 				infoInmuebles
-						.setCertificado(validator.getRegexStringComp(anyComp, setCertCobertError));
+						.setDenunciaInterna(validator.getRegexStringComp(anyComp, setDenunIntError));
+
+				// Misma lógica, si el usuario confirma que el Inmueble
+				// tiene seguro, habilitamos el input para requerir
+				// el certificado de seguro del Inmueble
+				if (infoInmuebles.getSeguro()) {
+					String setCertCobertError = "El formato es inválido: ";
+					System.out.print(utils.AnsiColors.ANSI_CYAN
+							+ "Ingrese el certificado de cobertura del bien inmueble: "
+							+ utils.AnsiColors.ANSI_RESET);
+					infoInmuebles
+							.setCertificado(validator.getRegexStringComp(anyComp, setCertCobertError));
+				}
+
+				String setFotosError = "El formato es inválido: ";
+				System.out.print(utils.AnsiColors.ANSI_CYAN + "Cargue las fotos aquí: "
+						+ utils.AnsiColors.ANSI_RESET);
+				infoInmuebles.setFotos(validator.getRegexStringComp(anyComp, setFotosError));
+
+				String setImpuestoError = "El formato es inválido: ";
+				System.out.print(utils.AnsiColors.ANSI_CYAN
+						+ "Ingrese Facturas o recibos que contenga la dirección del mueble: "
+						+ utils.AnsiColors.ANSI_RESET);
+				infoInmuebles.setImpuesto(validator.getRegexStringComp(anyComp, setImpuestoError));
+
+				String setDniError = "El input debe ser números válidos: ";
+				System.out.print(utils.AnsiColors.ANSI_CYAN
+						+ "Número de documento del dueño del mueble: " + utils.AnsiColors.ANSI_RESET);
+				infoInmuebles.setDni(validator.getRegexNumeros(dniComp, setDniError));
+
+				String setPresupuestoError = "El formato es inválido: ";
+				System.out.print(utils.AnsiColors.ANSI_CYAN
+						+ "Ingrese el presupuesto obtenido para el inmueble: "
+						+ utils.AnsiColors.ANSI_RESET);
+				infoInmuebles.setPresupuesto(validator.getRegexNumeros(anoSimple, setPresupuestoError));
+				Data.add_damages(infoInmuebles);
+				currentDamage = infoInmuebles;
+				infoInmuebles = null;
 			}
-
-			String setFotosError = "El formato es inválido: ";
-			System.out.print(utils.AnsiColors.ANSI_CYAN + "Cargue las fotos aquí: "
-					+ utils.AnsiColors.ANSI_RESET);
-			infoInmuebles.setFotos(validator.getRegexStringComp(anyComp, setFotosError));
-
-			String setImpuestoError = "El formato es inválido: ";
-			System.out.print(utils.AnsiColors.ANSI_CYAN
-					+ "Ingrese Facturas o recibos que contenga la dirección del mueble: "
-					+ utils.AnsiColors.ANSI_RESET);
-			infoInmuebles.setImpuesto(validator.getRegexStringComp(anyComp, setImpuestoError));
-
-			String setDniError = "El input debe ser números válidos: ";
-			System.out.print(utils.AnsiColors.ANSI_CYAN
-					+ "Número de documento del dueño del mueble: " + utils.AnsiColors.ANSI_RESET);
-			infoInmuebles.setDni(validator.getRegexNumeros(dniComp, setDniError));
-
-			String setPresupuestoError = "El formato es inválido: ";
-			System.out.print(utils.AnsiColors.ANSI_CYAN
-					+ "Ingrese el presupuesto obtenido para el inmueble: "
-					+ utils.AnsiColors.ANSI_RESET);
-			infoInmuebles.setPresupuesto(validator.getRegexNumeros(anoSimple, setPresupuestoError));
-			Data.add_damages(infoInmuebles);
-			currentDamage = infoInmuebles;
-			infoInmuebles = null;
+		} else {
+			System.out.println("No hay incidentes registrados");
 		}
 	}
 
@@ -588,7 +600,7 @@ public class Core {
 			switch (getInput()) {
 				case 1:
 					System.out.println("Ingrese el número de identificación");
-					display = Data.getDenunciante(getInput());
+					display = (Denunciante) Data.getDenunciante(getInput());
 					printData(display, "denunciante");
 					break;
 				case 2:
@@ -602,10 +614,16 @@ public class Core {
 					printData(display, "incidente");
 					break;
 				case 4:
-					System.out.println("Ingrese el número de identificacion de siniestro");
-					ArrayList<Object> damages = Data.getDamagesBySiniestroId(getInput());
-					damages.forEach(danio -> System.out.println(danio.toString()));
-					break;
+					System.out.println("Ingrese el número de identificacion");
+					display = Data.damages.get(getInput());
+					if (display instanceof Lesiones) {
+						printData(display, "Lesiones");
+					}
+					if (display instanceof Inmuebles || display instanceof Mueble)
+						printData(display, "Propiedades");
+					if (display instanceof SiniestroVehiculo)
+					printData(display, "Accidente");;
+						break;
 				case 5:
 					System.out.println(AnsiColors.ANSI_RED + "Volviendo..");
 					salir = !salir;
@@ -615,14 +633,14 @@ public class Core {
 					break;
 			}
 
-		}while(!salir);
+		} while (!salir);
 	}
 
-
 	public void printData(Object data, String dataType) {
-		if(data != null){
+		if (data != null) {
+
 			System.out.println(data.toString());
-		}else {
+		} else {
 			System.out.println("No se encontro ningún " + dataType + " con ese id");
 		}
 	}

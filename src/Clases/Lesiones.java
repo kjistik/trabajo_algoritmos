@@ -11,6 +11,7 @@ public class Lesiones {
     int id_siniestro;
 
     
+    
     public int getId() {
         return id;
     }
@@ -79,12 +80,13 @@ public class Lesiones {
     public String toString(){
         return "Lesiones\n"+
                "Id: " + id + 
-               "\nCobertuera: " + covertura +
+               "\nCovertura: " + covertura +
                "\nDenuncia: " + denuncia_int +
                "\nCertificado: " + certificado +
                "\nCertificado de salud: " + cert_salud +
                "\nDni: " + dni + 
-               "\nLesionado: " + lesionado;
+               "\nLesionado: " + lesionado+
+               "\nRegistrado en el siguiente incidente:\n" + Siniestro.displayInfo(id_siniestro);
     }
     
 }

@@ -1,7 +1,10 @@
 package Clases;
 
+import Persistencia.Data;
+
 public class Denunciante {
 
+    int id_asegurado;
     String nombre;
     String apellido;
     String correo;
@@ -9,6 +12,16 @@ public class Denunciante {
     Integer DNI;
     int id;
     int id_denunciante;
+
+    public static String displayInfo(int a) {
+        return Data.denunciantes.get(a).toString();
+    }
+
+    @Override
+    public String toString() {
+        return "Señor/a " + nombre + " " + apellido + ", DNI N°" + DNI + "\nCorreo electrónico: " + correo
+                + "\nTeléfono: " + telefono;
+    }
 
     public int getId_denunciante() {
         return id_denunciante;
@@ -25,8 +38,6 @@ public class Denunciante {
     public void setId_asegurado(int id_asegurado) {
         this.id_asegurado = id_asegurado;
     }
-
-    int id_asegurado;
 
     public String getNombre() {
         return nombre;

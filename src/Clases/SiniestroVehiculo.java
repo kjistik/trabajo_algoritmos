@@ -130,18 +130,19 @@ public class SiniestroVehiculo {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "Siniestro Vehiculo\n" +
-               "\nid: " + id +
-               "\nCobertura: " + cobertura +
-               "\nDenuncia Interna: " + denunciaInterna + 
-               "\nFranquicia: " + franquicia +
-               "\nCertificado de cobertura: " + certificadoCobertura +
-               "\nNota de franquicia: " + notaFranquicia +
-               "\nLicencia de conducir: " + licenciaConducir +
-               "\nTarjeta Verde: " + tarjetaVerde +
-               "\nFoto del vehiculo: " + fotoVehiculos +
-               "\nPresupuesto de reparación: " + presupuestoReparacion;
-               
+                "\nid: " + id +
+                "\nCobertura: " + cobertura +
+                "\nDenuncia Interna: " + denunciaInterna +
+                "\nFranquicia: " + franquicia +
+                "\nCertificado de cobertura: " + certificadoCobertura +
+                "\nNota de franquicia: " + notaFranquicia +
+                "\nLicencia de conducir: " + licenciaConducir +
+                "\nTarjeta Verde: " + tarjetaVerde +
+                "\nFoto del vehiculo: " + fotoVehiculos +
+                "\nPresupuesto de reparación: " + presupuestoReparacion +
+                "\nRegistrado en el siguiente incidente:\n" + Siniestro.displayInfo(id_siniestro);
+
     }
 }
