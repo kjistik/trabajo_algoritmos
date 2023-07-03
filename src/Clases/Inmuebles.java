@@ -8,6 +8,24 @@ public class Inmuebles {
     String impuesto; // domicilio del bien dañado y nombre del propietario.
     int dni;
     double presupuesto;
+    int id;
+    int id_siniestro;
+
+    public int getId_siniestro() {
+        return id_siniestro;
+    }
+
+    public void setId_siniestro(int id_siniestro) {
+        this.id_siniestro = id_siniestro;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Boolean getSeguro() {
         return seguro;
@@ -63,5 +81,19 @@ public class Inmuebles {
 
     public void setPresupuesto(double presupuesto) {
         this.presupuesto = presupuesto;
+    }
+
+    @Override
+    public String toString() {
+        return "Inmueble\n" +
+                "\nId: " + id +
+                "\nSeguro: " + seguro +
+                "\nDenuncia Interna: " + denunciaInterna +
+                "\nDni: " + dni +
+                "\nCertificado: " + certificado +
+                "\nFotos: " + fotos +
+                "\nImpuestos: " + impuesto +
+                "\nPresupuesto: " + presupuesto +
+                "\nRegistrado en el siguiente incidente:\n" + Siniestro.displayInfo(id_siniestro);
     }
 }

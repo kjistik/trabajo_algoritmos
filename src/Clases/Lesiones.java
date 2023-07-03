@@ -7,6 +7,18 @@ public class Lesiones {
     String cert_salud;
     int dni;
     int lesionado;
+    int id;
+    int id_siniestro;
+
+    
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Boolean getCovertura() {
         return covertura;
@@ -55,4 +67,26 @@ public class Lesiones {
     public void setLesionado(int lesionado) {
         this.lesionado = lesionado;
     }
+
+    public int getId_siniestro() {
+        return id_siniestro;
+    }
+
+    public void setId_siniestro(int id_siniestro) {
+        this.id_siniestro = id_siniestro;
+    }
+
+    @Override
+    public String toString(){
+        return "Lesiones\n"+
+               "Id: " + id + 
+               "\nCovertura: " + covertura +
+               "\nDenuncia: " + denuncia_int +
+               "\nCertificado: " + certificado +
+               "\nCertificado de salud: " + cert_salud +
+               "\nDni: " + dni + 
+               "\nLesionado: " + lesionado+
+               "\nRegistrado en el siguiente incidente:\n" + Siniestro.displayInfo(id_siniestro);
+    }
+    
 }

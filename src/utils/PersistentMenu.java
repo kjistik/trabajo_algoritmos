@@ -3,7 +3,7 @@ package utils;
 public class PersistentMenu {
 	public static void displaySubMenu() {
 
-		final String equalSeparador = "========================================================================================";
+		final String equalSeparador = "=".repeat(72);
 
 		System.out.println(utils.AnsiColors.ANSI_CYAN
 				+ "Bienvenido al servicio de registro de siniestros de Pepito Corp."
@@ -14,7 +14,6 @@ public class PersistentMenu {
 		System.out.print(
 				utils.AnsiColors.ANSI_YELLOW + " 2. " + utils.AnsiColors.ANSI_RESET
 						+ "Ver Siniestros almacenados ");
-		System.out.print(utils.AnsiColors.ANSI_YELLOW + " 3. " + utils.AnsiColors.ANSI_RESET + "Admin Panel ");
 		System.out.println(
 				utils.AnsiColors.ANSI_YELLOW + " 0. " + utils.AnsiColors.ANSI_RESET + "Salir " + "#");
 		System.out.println(equalSeparador);

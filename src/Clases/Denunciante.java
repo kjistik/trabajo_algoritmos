@@ -1,11 +1,43 @@
 package Clases;
 
+import Persistencia.Data;
+
 public class Denunciante {
+
+    int id_asegurado;
     String nombre;
     String apellido;
     String correo;
     String telefono;
     Integer DNI;
+    int id;
+    int id_denunciante;
+
+    public static String displayInfo(int a) {
+        return Data.denunciantes.get(a).toString();
+    }
+
+    @Override
+    public String toString() {
+        return "Señor/a " + nombre + " " + apellido + ", DNI N°" + DNI + "\nCorreo electrónico: " + correo
+                + "\nTeléfono: " + telefono;
+    }
+
+    public int getId_denunciante() {
+        return id_denunciante;
+    }
+
+    public void setId_denunciante(int id_denunciante) {
+        this.id_denunciante = id_denunciante;
+    }
+
+    public int getId_asegurado() {
+        return id_asegurado;
+    }
+
+    public void setId_asegurado(int id_asegurado) {
+        this.id_asegurado = id_asegurado;
+    }
 
     public String getNombre() {
         return nombre;
@@ -13,6 +45,14 @@ public class Denunciante {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getApellido() {

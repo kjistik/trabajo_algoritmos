@@ -1,6 +1,6 @@
 package Clases;
 
-//Define la clase.
+// Define la clase.
 public class SiniestroVehiculo {
     // Declara y se incian las variables en falso.
     boolean cobertura = false;
@@ -14,27 +14,37 @@ public class SiniestroVehiculo {
     String tarjetaVerde;
     String fotoVehiculos;
     int presupuestoReparacion;
+    int id;
+    int id_siniestro;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     // Constructor: inicializa las propiedades de la clase.
     // public SiniestroVehiculo(
-    //         boolean cobertura,
-    //         boolean franquicia,
-    //         String denunciaInterna,
-    //         String certificadoCobertura,
-    //         String notaFranquicia,
-    //         String licenciaConducir,
-    //         String tarjetaVerde,
-    //         String fotoVehiculos,
-    //         int presupuestoReparacion) {
-    //     this.cobertura = cobertura;
-    //     this.franquicia = franquicia;
-    //     this.denunciaInterna = denunciaInterna;
-    //     this.certificadoCobertura = certificadoCobertura;
-    //     this.notaFranquicia = notaFranquicia;
-    //     this.licenciaConducir = licenciaConducir;
-    //     this.tarjetaVerde = tarjetaVerde;
-    //     this.fotoVehiculos = fotoVehiculos;
-    //     this.presupuestoReparacion = presupuestoReparacion;
+    // boolean cobertura,
+    // boolean franquicia,
+    // String denunciaInterna,
+    // String certificadoCobertura,
+    // String notaFranquicia,
+    // String licenciaConducir,
+    // String tarjetaVerde,
+    // String fotoVehiculos,
+    // int presupuestoReparacion) {
+    // this.cobertura = cobertura;
+    // this.franquicia = franquicia;
+    // this.denunciaInterna = denunciaInterna;
+    // this.certificadoCobertura = certificadoCobertura;
+    // this.notaFranquicia = notaFranquicia;
+    // this.licenciaConducir = licenciaConducir;
+    // this.tarjetaVerde = tarjetaVerde;
+    // this.fotoVehiculos = fotoVehiculos;
+    // this.presupuestoReparacion = presupuestoReparacion;
     // }
 
     // Métodos para poder acceder y modificar las propiedades de la clase (get y
@@ -109,5 +119,30 @@ public class SiniestroVehiculo {
 
     public void setPresupuestoReparacion(int presupuestoReparacion) {
         this.presupuestoReparacion = presupuestoReparacion;
+    }
+
+    public int getId_siniestro() {
+        return id_siniestro;
+    }
+
+    public void setId_siniestro(int id_siniestro) {
+        this.id_siniestro = id_siniestro;
+    }
+
+    @Override
+    public String toString() {
+        return "Siniestro Vehiculo\n" +
+                "\nid: " + id +
+                "\nCobertura: " + cobertura +
+                "\nDenuncia Interna: " + denunciaInterna +
+                "\nFranquicia: " + franquicia +
+                "\nCertificado de cobertura: " + certificadoCobertura +
+                "\nNota de franquicia: " + notaFranquicia +
+                "\nLicencia de conducir: " + licenciaConducir +
+                "\nTarjeta Verde: " + tarjetaVerde +
+                "\nFoto del vehiculo: " + fotoVehiculos +
+                "\nPresupuesto de reparación: " + presupuestoReparacion +
+                "\nRegistrado en el siguiente incidente:\n" + Siniestro.displayInfo(id_siniestro);
+
     }
 }
