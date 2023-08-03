@@ -19,8 +19,8 @@ public class Denunciante {
 
     @Override
     public String toString() {
-        return "Señor/a " + nombre + " " + apellido + ", DNI N°" + DNI + "\nCorreo electrónico: " + correo
-                + "\nTeléfono: " + telefono;
+        return "\nSeñor/a " + nombre + " " + apellido + ", DNI N°" + DNI + "\nCorreo electrónico: " + correo
+                + "\nTeléfono: " + telefono + "\n";
     }
 
     public int getId_denunciante() {

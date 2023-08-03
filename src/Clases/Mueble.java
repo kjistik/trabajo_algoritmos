@@ -118,8 +118,8 @@ public class Mueble {
 
     @Override
     public String toString() {
-        return "Inmueble\n" +
-                "Id: " + id +
+        return "\nInmueble\n" +
+                "\nId: " + id +
                 "\nDni: " + dni +
                 "\nDenuncia interna: " +
                 "\nSeguro: " + seguro +
@@ -128,6 +128,6 @@ public class Mueble {
                 "\nFotos: " + fotos +
                 "\nPresupuesto: " + presupuesto +
                 "\nFactura: " + factura +
-                "\nRegistrado en el siguiente incidente:\n" + Siniestro.displayInfo(id_siniestro);
+                "\nRegistrado en el siguiente incidente: " + Siniestro.displayInfo(id_siniestro) + "\n";
     }
 }

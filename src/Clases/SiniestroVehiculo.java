@@ -131,7 +131,7 @@ public class SiniestroVehiculo {
 
     @Override
     public String toString() {
-        return "Siniestro Vehiculo\n" +
+        return "\nSiniestro Vehiculo\n" +
                 "\nid: " + id +
                 "\nCobertura: " + cobertura +
                 "\nDenuncia Interna: " + denunciaInterna +
@@ -142,7 +142,7 @@ public class SiniestroVehiculo {
                 "\nTarjeta Verde: " + tarjetaVerde +
                 "\nFoto del vehiculo: " + fotoVehiculos +
                 "\nPresupuesto de reparación: " + presupuestoReparacion +
-                "\nRegistrado en el siguiente incidente:\n" + Siniestro.displayInfo(id_siniestro);
+                "\nRegistrado en el siguiente incidente: " + Siniestro.displayInfo(id_siniestro) + "\n";
 
     }
 }

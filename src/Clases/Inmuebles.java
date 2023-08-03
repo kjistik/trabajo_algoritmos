@@ -85,7 +85,7 @@ public class Inmuebles {
 
     @Override
     public String toString() {
-        return "Inmueble\n" +
+        return "\nInmueble\n" +
                 "\nId: " + id +
                 "\nSeguro: " + seguro +
                 "\nDenuncia Interna: " + denunciaInterna +
@@ -94,6 +94,6 @@ public class Inmuebles {
                 "\nFotos: " + fotos +
                 "\nImpuestos: " + impuesto +
                 "\nPresupuesto: " + presupuesto +
-                "\nRegistrado en el siguiente incidente:\n" + Siniestro.displayInfo(id_siniestro);
+                "\nRegistrado en el siguiente incidente: " + Siniestro.displayInfo(id_siniestro) + "\n";
     }
 }

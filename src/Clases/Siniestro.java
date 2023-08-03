@@ -17,9 +17,9 @@ public static String displayInfo(int a) {
 
     @Override
     public String toString() {
-        return "Incidente ocurrido a las " + hora + " en " + lugar + "\nDescripción del hecho: "
-                + descripcion + "\nDescripción de los daños" + danios
-                + "\nSe encontró involucrado el siguiente vehículo: \n" + Asegurado.displayInfo(id_asegurado);
+        return "\nIncidente ocurrido a las " + hora + " en " + lugar + "\nDescripción del hecho: "
+                + descripcion + "\nDescripción de los daños: " + danios
+                + "\nSe encontró involucrado el siguiente vehículo: " + Asegurado.displayInfo(id_asegurado) + "\n";
     }
 
     public int getId() {

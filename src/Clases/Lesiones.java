@@ -78,15 +78,15 @@ public class Lesiones {
 
     @Override
     public String toString(){
-        return "Lesiones\n"+
-               "Id: " + id + 
+        return "\nLesiones\n"+
+               "\nId: " + id + 
                "\nCovertura: " + covertura +
                "\nDenuncia: " + denuncia_int +
                "\nCertificado: " + certificado +
                "\nCertificado de salud: " + cert_salud +
                "\nDni: " + dni + 
                "\nLesionado: " + lesionado+
-               "\nRegistrado en el siguiente incidente:\n" + Siniestro.displayInfo(id_siniestro);
+               "\nRegistrado en el siguiente incidente: " + Siniestro.displayInfo(id_siniestro) + "\n";
     }
     
 }

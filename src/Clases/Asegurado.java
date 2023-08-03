@@ -16,8 +16,8 @@ public class Asegurado {
 
     @Override
     public String toString() {
-        return "Vehículo " + marca + " " + modelo + " del año " + anio + " con la patente N° " + patente
-                + "\nRegistrado por: \n" + Denunciante.displayInfo(id_denunciante);
+        return "\nVehículo " + marca + " " + modelo + " del año " + anio + " con la patente N° " + patente
+                + "\nRegistrado por: " + Denunciante.displayInfo(id_denunciante) + "\n";
     }
 
     public String getMarca() {
